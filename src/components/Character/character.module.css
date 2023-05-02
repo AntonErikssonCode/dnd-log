@@ -2,11 +2,17 @@
   font-size: 2rem;
 }
 .cursiveText{
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-style: italic;
   
 
 }
 .container{
-  
+  padding: 0.2rem 1rem;
+  background: gray;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import {CharacterClass} from "../../Classes/Character";
 import styles from "./character.module.css"; // import the CSS file
 import basicStyles from "../../Styles/basic.module.css"
+
 interface CharacterProp {
   characterProp: CharacterClass;
 }
