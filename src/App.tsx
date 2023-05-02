@@ -2,30 +2,23 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import {CharacterClass} from "./Classes/Character";
+import Character from './components/Character/Character';
 function App() {
 
-  class Character {
-    name: string;
-    items: number[];
   
-    constructor(name: string, items: number[]) {
-      this.name = name;
-      this.items = items;
-    }
-  }
-  
-  const mrAron = new Character("Mr (Sir) Aron", [1, 2, 3, 4, 5]);
-  const firoraLanka = new Character("Fiora Lanka", [1, 2, 3, 4, 5]);
-  const kenneth = new Character("Kenneth", [1, 2, 3, 4, 5]);
+  const mrAron = new CharacterClass("Mr (Sir) Aron", "Knight", [1, 2, 3, 4, 5]);
+  const firoraLanka = new CharacterClass("Fiora Lanka", "Princess",[1, 2, 3, 4, 5]);
+  const kenneth = new CharacterClass("Kenneth", "Speleman",[1, 2, 3, 4, 5]);
 
-  const allChars: Character[] = [mrAron, firoraLanka, kenneth];
+  const allChars: CharacterClass[] = [mrAron, firoraLanka, kenneth];
   const itemComponents = allChars.map((character, index) => (
-    <li key={character.name+index}>{character.name}</li>
+    <Character characterProp={character} key={character.name+index}/>
   ));
   
   return (
     <div className="App">
-     <ul>{itemComponents}</ul>
+     <div className='charactersList'>{itemComponents}</div>
     </div>
   );
 }
