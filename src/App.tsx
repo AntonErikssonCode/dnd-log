@@ -33,38 +33,54 @@ function App() {
 
   const mrAron = new CharacterClass(
     1,
-    "Mr (Sir) Aron",
+    "Mr/Sir Aron",
     "Knight",
     characterFriends,
     characterEnemy,
     characterStats,
     characterGear
   );
+  const fiora = new CharacterClass(
+    1,
+    "Fiora Lanka",
+    "Princess",
+    characterFriends,
+    characterEnemy,
+    characterStats,
+    characterGear
+  );
 
-  const allChars: CharacterClass[] = [mrAron];
+  const allChars: CharacterClass[] = [
+    mrAron,
+    fiora,
+   
+  ];
 
   return (
     <Container
       sx={{
         display: "flex",
         flexDirection: "row",
-        bgcolor: "grey",
+       
         height: "100vh",
+        width: "100%",
+        p: 5,
       }}
     >
-      <Container sx={{ display: "flex", bgcolor: "blue", width: "30%" }}>
-      <CharacterList characterArray={allChars} onItemClick={handleItemClick} />
-       
+      <Container
+        sx={{ p: 0, m: 0, display: "flex",  width: "40%" }}
+      >
+        <CharacterList
+          characterArray={allChars}
+          onItemClick={handleItemClick}
+        />
       </Container>
-      <Container sx={{ display: "flex", bgcolor: "red", width: "70%" }}>
-        {" "}
+      <Container
+        sx={{ p: 0, m: 0, display: "flex",  width: "60%" }}
+      >
+        {selectedItem && <Selected character={selectedItem} />}
       </Container>
     </Container>
-
-    /*     <div className="App">
-      <CharacterList characterArray={allChars} onItemClick={handleItemClick} />
-      {selectedItem && <Selected character={selectedItem} />}
-    </div> */
   );
 }
 
