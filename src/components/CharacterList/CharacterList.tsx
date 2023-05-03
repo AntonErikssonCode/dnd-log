@@ -1,7 +1,7 @@
 import React from "react";
 import Character from "../Character/Character";
 import { CharacterClass } from "../../Classes/Character";
-import styles from "./characterList.module.css";
+
 interface Props {
   characterArray: CharacterClass[];
   onItemClick: (item: CharacterClass) => void;
@@ -13,7 +13,8 @@ function CharacterList(props: Props) {
       <Character characterProp={character} />
     </div>
   ));
-  return <div className={`${styles.listStyle}`}>{itemComponents}</div>;
+  
+  return <div >{itemComponents}</div>;
 }
 
 export default CharacterList;

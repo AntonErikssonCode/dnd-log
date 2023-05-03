@@ -6,7 +6,7 @@ import CharacterList from "./components/CharacterList/CharacterList";
 import Selected from "./components/Selected/Selected";
 import Character from "./components/Character/Character";
 import { useState } from "react";
-
+import { Container, Typography, List, ListItem } from "@mui/material";
 function App() {
   const [selectedItem, setSelectedItem] = useState<CharacterClass | null>(null);
 
@@ -44,10 +44,27 @@ function App() {
   const allChars: CharacterClass[] = [mrAron];
 
   return (
-    <div className="App">
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        bgcolor: "grey",
+        height: "100vh",
+      }}
+    >
+      <Container sx={{ display: "flex", bgcolor: "blue", width: "30%" }}>
+      <CharacterList characterArray={allChars} onItemClick={handleItemClick} />
+       
+      </Container>
+      <Container sx={{ display: "flex", bgcolor: "red", width: "70%" }}>
+        {" "}
+      </Container>
+    </Container>
+
+    /*     <div className="App">
       <CharacterList characterArray={allChars} onItemClick={handleItemClick} />
       {selectedItem && <Selected character={selectedItem} />}
-    </div>
+    </div> */
   );
 }
 
