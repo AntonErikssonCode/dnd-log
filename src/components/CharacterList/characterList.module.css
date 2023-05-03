@@ -6,6 +6,6 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.5rem;
-  height: 98vh;
+  height: 100%;
   overflow-x: auto;
 }

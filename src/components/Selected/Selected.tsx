@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./selected.module.css";
 import { CharacterClass } from "../../Classes/Character";
+import shield from "./../../assets/shield-line-icon.png";
+import bigshield from "./../../assets/big-shield.png";
 
 interface Props {
   character: CharacterClass;
@@ -32,19 +34,111 @@ function Selected(props: Props) {
         <h2>{props.character.name}</h2>
         <h3>{props.character.title}</h3>
         <div className={`${styles.mainContent} `}>
-          <div className={`${styles.introContent} `}>
+        <div className={`${styles.left} `}>
+          
+          <div className={`${styles.top} `}>
+            <div className={`${styles.acShield} `}>
+              <h3>Armor Class</h3>
+              <img
+                className={`${styles.acShieldImg} `}
+                src={bigshield}
+                alt=""
+              />
+              <div className={`${styles.acText} `}>
+                {props.character.stats.ac}
+              </div>
+            </div>
+
             <ul className={`${styles.statsContainer} `}>
               <li className={`${styles.stats} `}>
-                <h3> Dex</h3>
+             
                 <div className={`${styles.statsShield} `}>
-                  <img className={`${styles.statsShieldImg} `} src="https://i.etsystatic.com/30478518/r/il/75bf3c/3652934429/il_fullxfull.3652934429_bspk.jpg" alt="" />
-                  <div>{props.character.stats.dex}</div>
+                <h3> Dex</h3>
+                  <img
+                    className={`${styles.statsShieldImg} `}
+                    src={shield}
+                    alt=""
+                  />
+                  <div className={`${styles.statsText} `}>
+                    {props.character.stats.dex}
+                  </div>
                 </div>
-
               </li>
+              <li className={`${styles.stats} `}>
               
+                <div className={`${styles.statsShield} `}>
+                <h3> Srt</h3>
+                  <img
+                    className={`${styles.statsShieldImg} `}
+                    src={shield}
+                    alt=""
+                  />
+                  <div className={`${styles.statsText} `}>
+                    {props.character.stats.str}
+                  </div>
+                </div>
+              </li>
+              <li className={`${styles.stats} `}>
+           
+                <div className={`${styles.statsShield} `}>
+                <h3> Con</h3>
+                  <img
+                    className={`${styles.statsShieldImg} `}
+                    src={shield}
+                    alt=""
+                  />
+                  <div className={`${styles.statsText} `}>
+                    {props.character.stats.con}
+                  </div>
+                </div>
+              </li>
+              <li className={`${styles.stats} `}>
+               
+                <div className={`${styles.statsShield} `}>
+                <h3> Int</h3>
+                  <img
+                    className={`${styles.statsShieldImg} `}
+                    src={shield}
+                    alt=""
+                  />
+                  <div className={`${styles.statsText} `}>
+                    {props.character.stats.int}
+                  </div>
+                </div>
+              </li>
+              <li className={`${styles.stats} `}>
+                
+                <div className={`${styles.statsShield} `}>
+                <h3> Wis</h3>
+                  <img
+                    className={`${styles.statsShieldImg} `}
+                    src={shield}
+                    alt=""
+                  />
+                  <div className={`${styles.statsText} `}>
+                    {props.character.stats.wis}
+                  </div>
+                </div>
+              </li>
+              <li className={`${styles.stats} `}>
+            
+                <div className={`${styles.statsShield} `}>
+                <h3>Cha</h3>
+                  <img
+                    className={`${styles.statsShieldImg} `}
+                    src={shield}
+                    alt=""
+                  />
+                  <div className={`${styles.statsText} `}>
+                    {props.character.stats.cha}
+                  </div>
+                </div>
+              </li>
             </ul>
-
+            </div>
+            <div className={`${styles.bot} `}>
+              
+           
             <ul className={`${styles.friendsList} `}>
               <h3>Friends</h3>
               {friends}
@@ -57,7 +151,15 @@ function Selected(props: Props) {
               <h3>Gear</h3>
               {gear}
             </ul>
-          </div>
+            </div>
+
+       
+
+
+            </div>
+
+
+
 
           <div className={`${styles.imgContainer} `}>
             <img
