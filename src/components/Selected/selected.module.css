@@ -22,3 +22,21 @@
   justify-content: center;
   flex-direction: row
 }
+.imgContainer{
+  width: 30%;
+  border-radius: 0.5rem;
+
+
+
+}
+
+.img{
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+
+.gearItem, .friends, .enemys{
+  display: flex;
+  flex-direction: column;
+}
