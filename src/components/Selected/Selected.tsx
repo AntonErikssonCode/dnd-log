@@ -22,7 +22,7 @@ function Selected(props: Props) {
         </Box>
         <Container
           sx={{
-            p: 1,
+            p: 2,
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-evenly",
@@ -45,7 +45,7 @@ function Selected(props: Props) {
           </Box>
           <Box
             sx={{
-              width: "40%",
+              width: "30%",
               textAlign: "center",
               justifyContent: "center",
               display: "flex",
@@ -95,7 +95,7 @@ function Selected(props: Props) {
             </Container>
           </Box>
           <Box
-            sx={{ py: 0, width: "40%", height: "auto", textAlign: "center" }}
+            sx={{ py: 0, width: "50%", height: "auto", textAlign: "center" }}
           >
             <img style={{height:"100%", width: "auto ", borderRadius:" 0.5rem"}} src={props.character.img} />
           </Box>
