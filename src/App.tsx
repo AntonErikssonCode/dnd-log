@@ -6,8 +6,38 @@ import CharacterList from "./components/CharacterList/CharacterList";
 import Selected from "./components/Selected/Selected";
 import Character from "./components/Character/Character";
 import { useState } from "react";
-import { Container, Typography, List, ListItem, Box } from "@mui/material";
+import {
+  Container,
+  Typography,
+  List,
+  ListItem,
+  Box,
+  Button,
+} from "@mui/material";
 import backgroundImage from "./assets/board.jpg";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#064663",
+      light: "#064663",
+      dark: "#064663",
+    },
+    secondary: {
+      main: "#ECB365",
+    },
+    background: {
+      default: "#041C32",
+      paper: "#04293A",
+    },
+    text: {
+      primary: "#ffffff",
+      secondary: "#dddddd",
+    },
+  },
+});
 
 function App() {
   const [selectedItem, setSelectedItem] = useState<CharacterClass | null>(null);
@@ -70,7 +100,107 @@ function App() {
   ];
 
   return (
-    <Box
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          bgcolor: "background.default",
+          display: "flex",
+          m: 0,
+          p: 0,
+        }}
+      >
+        <Box
+          sx={{
+            width: "16%",
+            position: "fixed",
+            top: 0,
+            bottom: 0,
+            left: 0,
+            bgcolor: "background.paper",
+            m: 0,
+            py: 10,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <List
+            sx={{
+              m: 0,
+              pt: 0,
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              gap: 0 /*,bgcolor:"text.primary" */,
+              height: "100%",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              sx={{
+                m: 0,
+                p: 1,
+                color: "text.primary",
+                bgcolor: "primary.main",
+                width: "100%",
+                borderRadius: 0,
+              }}
+            >
+              <Typography>Characters</Typography>
+            </Button>
+            <Button
+              sx={{
+                m: 0,
+                p: 1,
+                color: "text.primary",
+                bgcolor: "primary.main",
+                width: "100%",
+                borderRadius: 0,
+              }}
+            >
+              <Typography>Locations</Typography>
+            </Button>
+            <Button
+              sx={{
+                m: 0,
+                p: 1,
+                color: "text.primary",
+                bgcolor: "primary.main",
+                width: "100%",
+                borderRadius: 0,
+              }}
+            >
+              <Typography>Locations</Typography>
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                
+                marginTop: "auto",
+                p: 1,
+                color: "text.primary",
+                /* bgcolor: "secondary.main", */
+                width: "70%",
+                height: "20%",
+                alignSelf: "center",
+             
+              }}
+            >
+              <Typography sx={{alignSelf:"center"}}>Add</Typography>
+            </Button>
+          </List>
+        </Box>
+
+        <Container></Container>
+      </Box>
+    </ThemeProvider>
+
+    /* <Box
       sx={{
 
         position: "fixed",
@@ -93,12 +223,11 @@ function App() {
           backgroundImage: `url(${backgroundImage})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          height: "100vh", // or any other height you prefer
+          height: "100vh", 
           filter: "blur(5px)",
           zIndex: "-10",
         }}
       ></Box>
-      {/* Your component content goes here */}
 
       <Container
         sx={{
@@ -121,7 +250,7 @@ function App() {
           {selectedItem && <Selected character={selectedItem} />}
         </Container>
       </Container>
-    </Box>
+    </Box> */
   );
 }
 
