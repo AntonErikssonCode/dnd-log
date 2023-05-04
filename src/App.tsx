@@ -96,7 +96,7 @@ function App() {
     mrAron,
     fiora,
     mrAron,
-    fiora,
+  
   ];
 
   return (
@@ -175,28 +175,71 @@ function App() {
                 borderRadius: 0,
               }}
             >
-              <Typography>Locations</Typography>
+              <Typography>Sessions</Typography>
             </Button>
             <Button
               variant="contained"
               sx={{
-                
                 marginTop: "auto",
                 p: 1,
                 color: "text.primary",
-                /* bgcolor: "secondary.main", */
                 width: "70%",
                 height: "20%",
                 alignSelf: "center",
-             
               }}
             >
-              <Typography sx={{alignSelf:"center"}}>Add</Typography>
+              <Typography sx={{ alignSelf: "center", fontSize: "4rem" }}>
+                +
+              </Typography>
             </Button>
           </List>
         </Box>
 
-        <Container></Container>
+        <Container
+          sx={{
+            m: 0,
+            p: 2,
+          }}
+        >
+          <Box
+            sx={{
+          /*     bgcolor: "background.paper", */
+              width: "81%",
+              height: "94%",
+              position: "fixed",
+              borderRadius: "0.2rem",
+
+              left: "17%",
+              display: "flex",
+              m: 0,
+              p: 1,
+              flexWrap: "wrap",
+              justifyContent:"flex-start",
+              alignItems:"flex-start",
+              overflowY:"auto"
+            }}
+          >
+            {allChars.map((_, index) => (
+              <Box
+                key={index}
+                sx={{
+                  width: { xs: "200px", sm: "200px", md: "200px" },
+                  p: 0.5,
+                  boxSizing: "border-box",
+                }}
+              >
+                {/* Replace the `div` below with your desired MUI element */}
+                <div
+                  style={{
+                    backgroundColor: "lightgray",
+                    height: "200px",
+                    borderRadius: "0.2rem",
+                  }}
+                />
+              </Box>
+            ))}
+          </Box>
+        </Container>
       </Box>
     </ThemeProvider>
 
