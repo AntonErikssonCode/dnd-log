@@ -96,6 +96,30 @@ function App() {
     mrAron,
     fiora,
     mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
   
   ];
 
@@ -203,20 +227,19 @@ function App() {
         >
           <Box
             sx={{
-          /*     bgcolor: "background.paper", */
+             /*  bgcolor: "background.paper", */
               width: "81%",
               height: "94%",
               position: "fixed",
               borderRadius: "0.2rem",
-
               left: "17%",
               display: "flex",
-              m: 0,
-              p: 1,
               flexWrap: "wrap",
-              justifyContent:"flex-start",
-              alignItems:"flex-start",
-              overflowY:"auto"
+              justifyContent: "flex-start",
+              alignItems: "flex-start",
+              overflowY: "auto",
+              p: 2,
+              gap: 3,
             }}
           >
             {allChars.map((_, index) => (
@@ -229,7 +252,7 @@ function App() {
                 }}
               >
                 {/* Replace the `div` below with your desired MUI element */}
-                <div
+                <Box
                   style={{
                     backgroundColor: "lightgray",
                     height: "200px",
