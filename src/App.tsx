@@ -38,7 +38,8 @@ function App() {
     characterFriends,
     characterEnemy,
     characterStats,
-    characterGear
+    characterGear,
+    "https://cg4.cgsociety.org/uploads/images/medium/claudiotumiati-the-old-knight-1-a01518b0-sboy.jpg"
   );
   const fiora = new CharacterClass(
     1,
@@ -47,7 +48,8 @@ function App() {
     characterFriends,
     characterEnemy,
     characterStats,
-    characterGear
+    characterGear,
+    "https://i.pinimg.com/originals/76/5e/83/765e832e796316517b5a8acfa7647cde.png"
   );
 
   const allChars: CharacterClass[] = [

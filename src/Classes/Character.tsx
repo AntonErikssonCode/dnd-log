@@ -34,6 +34,7 @@ export class CharacterClass {
   enemys: Enemy[];
   stats: Stats;
   gear: Gear[];
+  img: string;
 
   constructor(
     encouterNum: number,
@@ -43,6 +44,7 @@ export class CharacterClass {
     enemys: Enemy[],
     stats: Stats,
     gear: Gear[],
+    img: string,
   ) {
     this.encouterNum = encouterNum;
     this.name = name;
@@ -51,5 +53,6 @@ export class CharacterClass {
     this.enemys = enemys;
     this.stats = stats;
     this.gear = gear;
+    this.img = img;
   }
 }
