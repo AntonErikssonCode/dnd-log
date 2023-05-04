@@ -7,3 +7,29 @@ html, body{
   overflow: hidden;
 
 }
+/* body{
+  background-image: url("./assets/board.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: 100vw 100vh;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}  */
+
+.bg-image {
+  /* The image used */
+  background-image: url("./assets/board.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}

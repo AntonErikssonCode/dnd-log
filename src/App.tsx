@@ -6,7 +6,9 @@ import CharacterList from "./components/CharacterList/CharacterList";
 import Selected from "./components/Selected/Selected";
 import Character from "./components/Character/Character";
 import { useState } from "react";
-import { Container, Typography, List, ListItem } from "@mui/material";
+import { Container, Typography, List, ListItem, Box } from "@mui/material";
+import backgroundImage from "./assets/board.jpg";
+
 function App() {
   const [selectedItem, setSelectedItem] = useState<CharacterClass | null>(null);
 
@@ -65,34 +67,61 @@ function App() {
     fiora,
     mrAron,
     fiora,
-   
   ];
 
   return (
-    <Container
+    <Box
       sx={{
-        display: "flex",
-        flexDirection: "row",
-       
-        height: "100vh",
-        width: "100%",
-        p: 5,
+
+        position: "fixed",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+    
       }}
     >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          position: "fixed",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          height: "100vh", // or any other height you prefer
+          filter: "blur(5px)",
+          zIndex: "-10",
+        }}
+      ></Box>
+      {/* Your component content goes here */}
+
       <Container
-        sx={{ p: 0, m: 0, display: "flex",  width: "40%"}}
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+
+          height: "100vh",
+          width: "100%",
+          p: 5,
+       
+        }}
       >
-        <CharacterList
-          characterArray={allChars}
-          onItemClick={handleItemClick}
-        />
+        <Container sx={{ p: 0, m: 0, display: "flex", width: "40%" }}>
+          <CharacterList
+            characterArray={allChars}
+            onItemClick={handleItemClick}
+          />
+        </Container>
+        <Container sx={{ p: 0, m: 0, display: "flex", width: "60%" }}>
+          {selectedItem && <Selected character={selectedItem} />}
+        </Container>
       </Container>
-      <Container
-        sx={{ p: 0, m: 0, display: "flex",  width: "60%" }}
-      >
-        {selectedItem && <Selected character={selectedItem} />}
-      </Container>
-    </Container>
+    </Box>
   );
 }
 
