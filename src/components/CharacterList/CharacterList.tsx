@@ -24,7 +24,22 @@ function CharacterList(props: Props) {
   ));
 
   return (
-    <List sx={{ p:0, m: 1, width: "100%", height: "100%" }}>
+    <List sx={{ p:0, m: 1, width: "100%", overflowY: "auto",
+    margin: 0,
+    padding: 0,
+    listStyle: "none",
+    height: "100%",
+    '&::-webkit-scrollbar': {
+      width: '0.4em'
+    },
+    '&::-webkit-scrollbar-track': {
+      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: 'rgba(0,0,0,.1)',
+      outline: '1px solid slategrey'
+    }}}>
       {itemComponents}
     </List>
   );

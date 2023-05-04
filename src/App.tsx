@@ -53,6 +53,16 @@ function App() {
   const allChars: CharacterClass[] = [
     mrAron,
     fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
+    mrAron,
+    fiora,
    
   ];
 
@@ -68,7 +78,7 @@ function App() {
       }}
     >
       <Container
-        sx={{ p: 0, m: 0, display: "flex",  width: "40%" }}
+        sx={{ p: 0, m: 0, display: "flex",  width: "40%"}}
       >
         <CharacterList
           characterArray={allChars}
