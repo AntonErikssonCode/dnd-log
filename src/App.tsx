@@ -247,7 +247,7 @@ function App() {
             }}
           >
             {allChars.map((character, index) => (
-              <Card data={character}/>
+              <Card data={character} key={index}/>
             ))}
           </Box>
         </Box>
