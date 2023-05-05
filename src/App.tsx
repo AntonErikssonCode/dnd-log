@@ -73,7 +73,7 @@ function App() {
     "https://cg4.cgsociety.org/uploads/images/medium/claudiotumiati-the-old-knight-1-a01518b0-sboy.jpg"
   );
   const fiora = new CharacterClass(
-    1,
+    2,
     "Fiora Lanka",
     "Princess",
     characterFriends,

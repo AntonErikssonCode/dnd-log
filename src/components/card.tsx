@@ -1,48 +1,6 @@
-/* import React, {useState} from "react";
-import { Box, Typography} from "@mui/material";
-import { CharacterClass } from "../Classes/Character";
-type Props = {
-  data: CharacterClass;
-};
-function Card(props: Props) {
-  const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleCardClick = () => {
-    setIsExpanded(true);
-  };
-  const { data } = props;
-  return (
-    <Box
-      sx={{
-     
-        p: 0.5,
-        boxSizing: "border-box",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "lightgray",
-        height: isExpanded ? "90%" : "200px",
-        width: isExpanded ? "90%" : "200px",
-        transition: "height 0.5s ease",
-      }}
-      onClick={handleCardClick}
-    >
-       <Typography>{data.name}</Typography>
-      <Box
-        style={{
-          backgroundColor: "lightgray",
-          height: "200px",
-          borderRadius: "0.2rem",
-        }}
-      />
-     
-    </Box>
-  );
-}
+import { useTheme } from "@mui/material/styles";
 
-
-export default Card;
- */
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Box, Typography } from "@mui/material";
 import { CharacterClass } from "../Classes/Character";
@@ -52,6 +10,7 @@ type Props = {
 };
 
 function Card(props: Props) {
+  const theme = useTheme();
   const { data } = props;
   const [isExpanded, setIsExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -83,23 +42,58 @@ function Card(props: Props) {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "lightgray",
-        cursor: "pointer", 
+        cursor: "pointer",
+        bgcolor: "primary.main",
         height: isExpanded ? "90%" : "200px",
         width: isExpanded ? "90%" : "200px",
-        zIndex: isExpanded ? "10" : "1",
-      /*   transition: "all 0.1s ease", */
+        /* transition: "width 0.2s linear, height  0.2s linear", */
+        /*  zIndex: isExpanded ? "10" : "1",
+        position: isExpanded ? "absolute" : "static", 
+        height: isExpanded ? "90%" : "200px",
+        width: isExpanded ? "90%" : "200px", 
+        top: isExpanded ? "5%" : "0", 
+        left: isExpanded ? "6%" : "0", 
+        transition: "all 0.2s linear", */
       }}
       onClick={handleCardClick}
     >
       {isExpanded ? (
         <Typography>{data.name + data.name}</Typography>
       ) : (
-        <Typography>{data.name}</Typography>
+        <Box
+          sx={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <Typography sx={{ position: "absolute", top: "0rem", right: "0" }}>
+            {data.encouterNum}
+          </Typography>
+          <Box sx={{ display:"flex",  
+            alignItems: "center",
+            justifyContent: "center",}}>
+            <img
+              src={data.img}
+              alt={data.name}
+              style={{ width: "70%" }} 
+            />
+          </Box>
+
+          <Typography sx={{ color: "text.primary" }}>{data.name}</Typography>
+
+          <Typography sx={{ color: "text.secondary", fontStyle: "italic" }}>
+            {data.title}
+          </Typography>
+        </Box>
       )}
 
       <Box
         style={{
-          backgroundColor: "lightgray",
           height: "200px",
           borderRadius: "0.2rem",
         }}
