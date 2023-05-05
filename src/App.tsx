@@ -2,9 +2,6 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { CharacterClass, Friend, Enemy } from "./Classes/Character";
-import CharacterList from "./components/CharacterList/CharacterList";
-import Selected from "./components/Selected/Selected";
-import Character from "./components/Character/Character";
 import { useState } from "react";
 import {
   Container,
@@ -16,6 +13,8 @@ import {
 } from "@mui/material";
 import backgroundImage from "./assets/board.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+import Card from "./components/card";
 
 const theme = createTheme({
   palette: {
@@ -120,7 +119,6 @@ function App() {
     mrAron,
     fiora,
     mrAron,
-  
   ];
 
   return (
@@ -219,50 +217,40 @@ function App() {
           </List>
         </Box>
 
-        <Container
+        <Box
           sx={{
             m: 0,
-            p: 2,
+          
+            bgcolor: "grey",
+            width:"82%"
+    ,position:"fixed",
+    left:"16%",
+    display:"flex",
+    justifyContent:"center"
           }}
         >
           <Box
             sx={{
-             /*  bgcolor: "background.paper", */
-              width: "81%",
+              /*  bgcolor: "background.paper", */
+          
               height: "94%",
-              position: "fixed",
+            
               borderRadius: "0.2rem",
-              left: "17%",
+              position:"fixed",
               display: "flex",
               flexWrap: "wrap",
-              justifyContent: "flex-start",
+              justifyContent: "center",
               alignItems: "flex-start",
               overflowY: "auto",
-              p: 2,
+              p: 3,
               gap: 3,
             }}
           >
-            {allChars.map((_, index) => (
-              <Box
-                key={index}
-                sx={{
-                  width: { xs: "200px", sm: "200px", md: "200px" },
-                  p: 0.5,
-                  boxSizing: "border-box",
-                }}
-              >
-                {/* Replace the `div` below with your desired MUI element */}
-                <Box
-                  style={{
-                    backgroundColor: "lightgray",
-                    height: "200px",
-                    borderRadius: "0.2rem",
-                  }}
-                />
-              </Box>
+            {allChars.map((character, index) => (
+              <Card data={character}/>
             ))}
           </Box>
-        </Container>
+        </Box>
       </Box>
     </ThemeProvider>
 
