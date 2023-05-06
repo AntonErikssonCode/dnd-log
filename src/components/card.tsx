@@ -1,4 +1,3 @@
-
 import { useTheme } from "@mui/material/styles";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
@@ -46,14 +45,11 @@ function Card(props: Props) {
         bgcolor: "primary.main",
         height: isExpanded ? "90%" : "200px",
         width: isExpanded ? "90%" : "200px",
-        /* transition: "width 0.2s linear, height  0.2s linear", */
-        /*  zIndex: isExpanded ? "10" : "1",
-        position: isExpanded ? "absolute" : "static", 
-        height: isExpanded ? "90%" : "200px",
-        width: isExpanded ? "90%" : "200px", 
-        top: isExpanded ? "5%" : "0", 
-        left: isExpanded ? "6%" : "0", 
-        transition: "all 0.2s linear", */
+        transition: "transform 0.2s ease-in-out",
+        "&:hover":{
+          transform:"scale(1.05)",
+          
+        }
       }}
       onClick={handleCardClick}
     >
@@ -71,17 +67,39 @@ function Card(props: Props) {
             flexDirection: "column",
           }}
         >
-          <Typography sx={{ position: "absolute", top: "0rem", right: "0" }}>
-            {data.encouterNum}
-          </Typography>
-          <Box sx={{ display:"flex",  
-            alignItems: "center",
-            justifyContent: "center",}}>
-            <img
-              src={data.img}
-              alt={data.name}
-              style={{ width: "70%" }} 
-            />
+          <Box
+            sx={{
+            
+              position: "absolute",
+              top: "-1rem",
+              right: "-1rem",
+              bgcolor: "secondary.main",
+              width: "30px",
+              height: "30px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius:"5px"
+            }}
+          >
+            <Typography
+              sx={{
+                color:
+                  "text.primary" /* , position: "absolute", top: "0rem", right: "0" */,
+              }}
+            >
+              {data.encouterNum}
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img src={data.img} alt={data.name} style={{ width: "70%" }} />
           </Box>
 
           <Typography sx={{ color: "text.primary" }}>{data.name}</Typography>
