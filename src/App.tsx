@@ -40,10 +40,31 @@ const theme = createTheme({
 
 function App() {
   const [selectedItem, setSelectedItem] = useState<CharacterClass | null>(null);
-
+  const [showSection, setShowSection] = useState(0);
   function handleItemClick(item: CharacterClass) {
     setSelectedItem(item);
   }
+
+  const handleMenuSelection = (selection: number): void => {
+    setShowSection(selection);
+  };
+
+  const npcs = () => (
+    <>
+      {allNpcChars.map((character, index) => (
+        <Card data={character} key={index}/>
+      ))}
+    </>
+  );
+  const locations = () => (
+    <>
+     
+    </>
+  );
+  const layouts = [npcs, locations,npcs, locations];
+
+  const ActiveLayout = layouts[showSection];
+
 
   const characterFriends = [
     { name: "Fiora Lanka", degree: 10 },
@@ -83,7 +104,7 @@ function App() {
     "https://i.pinimg.com/originals/76/5e/83/765e832e796316517b5a8acfa7647cde.png"
   );
 
-  const allChars: CharacterClass[] = [
+  const allNpcChars: CharacterClass[] = [
     mrAron,
     fiora,
     mrAron,
@@ -172,8 +193,9 @@ function App() {
                 width: "100%",
                 borderRadius: 0,
               }}
+              onClick={() => handleMenuSelection(0)}
             >
-              <Typography>Characters</Typography>
+              <Typography>NPCS</Typography>
             </Button>
             <Button
               sx={{
@@ -184,6 +206,7 @@ function App() {
                 width: "100%",
                 borderRadius: 0,
               }}
+              onClick={() => handleMenuSelection(1)}
             >
               <Typography>Locations</Typography>
             </Button>
@@ -196,6 +219,7 @@ function App() {
                 width: "100%",
                 borderRadius: 0,
               }}
+              onClick={() => handleMenuSelection(2)}
             >
               <Typography>Sessions</Typography>
             </Button>
@@ -209,6 +233,7 @@ function App() {
                 height: "20%",
                 alignSelf: "center",
               }}
+              onClick={() => handleMenuSelection(3)}
             >
               <Typography sx={{ alignSelf: "center", fontSize: "4rem" }}>
                 +
@@ -220,23 +245,23 @@ function App() {
         <Box
           sx={{
             m: 0,
-          
+
             bgcolor: "grey",
-            width:"82%"
-    ,position:"fixed",
-    left:"16%",
-    display:"flex",
-    justifyContent:"center"
+            width: "82%",
+            position: "fixed",
+            left: "16%",
+            display: "flex",
+            justifyContent: "center",
           }}
         >
           <Box
             sx={{
               /*  bgcolor: "background.paper", */
-          
+
               height: "94%",
-            
+
               borderRadius: "0.2rem",
-              position:"fixed",
+              position: "fixed",
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "center",
@@ -245,10 +270,9 @@ function App() {
               p: 3,
               gap: 3,
             }}
+            
           >
-            {allChars.map((character, index) => (
-              <Card data={character} key={index}/>
-            ))}
+            <ActiveLayout />
           </Box>
         </Box>
       </Box>
