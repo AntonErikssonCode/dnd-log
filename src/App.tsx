@@ -14,48 +14,19 @@ import {
 import backgroundImage from "./assets/board.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Card from "./components/card";
-import {  ref, set } from 'firebase/database';
-import db from "./db/firebase";
-
-function writeData() {
-  const dbRef = ref(db, 'path/to/data');
-  set(dbRef, {
-    name: 'John',
-    age: 3,
-    email: 'john@example.com'
-  });
-}
-
-writeData();
+import {  ref, set, push } from 'firebase/database';
+import firebaseDB from "./db/firebase";
+import InputForm from "./components/inputForm";
+import theme from "./theme/theme";
 
 
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#064663",
-      light: "#064663",
-      dark: "#064663",
-    },
-    secondary: {
-      main: "#ECB365",
-      light: "#ECB365",
-      dark: "#ECB365",
-    },
-    background: {
-      default: "#041C32",
-      paper: "#04293A",
-    },
-    text: {
-      primary: "#ffffff",
-      secondary: "#dddddd",
-    },
-  },
-});
+firebaseDB.setNpc("ccc", "dx")
+
+
 
 function App() {
   const [selectedItem, setSelectedItem] = useState<CharacterClass | null>(null);
-  const [showSection, setShowSection] = useState(1);
+  const [showSection, setShowSection] = useState(4);
   function handleItemClick(item: CharacterClass) {
     setSelectedItem(item);
   }
@@ -64,6 +35,10 @@ function App() {
     setShowSection(selection);
 
   };
+
+  firebaseDB.getNpcData();
+
+  
 
   const players = () => (
     <>
@@ -90,7 +65,7 @@ function App() {
   );
   const add = () => (
     <>
-     <Typography sx={{color:"text.primary"}}>Add</Typography>
+  <InputForm/>
     </>
   );
 
@@ -118,7 +93,7 @@ function App() {
 
   const mrAron = new CharacterClass(
     1,
-    "Mr/Sir Aron",
+    "Mr (Sir) Aron",
     "Knight",
     characterFriends,
     characterEnemy,
@@ -136,6 +111,9 @@ function App() {
     characterGear,
     "https://i.pinimg.com/originals/76/5e/83/765e832e796316517b5a8acfa7647cde.png"
   );
+
+  
+
 
   const allNpcChars: CharacterClass[] = [
     mrAron,

@@ -55,4 +55,8 @@ export class CharacterClass {
     this.gear = gear;
     this.img = img;
   }
+  public nameWithoutSpace(): string {
+    return this.name.replace(/\s/g, "");
+  }
+  
 }
