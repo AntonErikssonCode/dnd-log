@@ -2,7 +2,7 @@ import { useTheme } from "@mui/material/styles";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Box, Typography } from "@mui/material";
-import { CharacterClass } from "../Classes/Character";
+import { CharacterClass } from "../classes/Character";
 
 type Props = {
   data: CharacterClass;
@@ -35,7 +35,7 @@ function Card(props: Props) {
     <Box
       ref={ref}
       sx={{
-        p: 0.5,
+        p: 1,
         boxSizing: "border-box",
         display: "flex",
         alignItems: "center",
@@ -69,13 +69,13 @@ function Card(props: Props) {
         >
           <Box
             sx={{
-            
+              p:0,
               position: "absolute",
-              top: "-1rem",
-              right: "-1rem",
-              bgcolor: "secondary.main",
-              width: "30px",
-              height: "30px",
+              top: "-1.1rem",
+              left: "68px",
+              bgcolor: "background.paper",
+              width: "60px",
+             
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -84,7 +84,10 @@ function Card(props: Props) {
           >
             <Typography
               sx={{
+                p:0,
+                fontSize:"0.8rem",
                 color:
+               
                   "text.primary" /* , position: "absolute", top: "0rem", right: "0" */,
               }}
             >

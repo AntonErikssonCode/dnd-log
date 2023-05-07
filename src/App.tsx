@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { CharacterClass, Friend, Enemy } from "./Classes/Character";
+import { CharacterClass, Friend, Enemy } from "./classes/Character";
 import { useState } from "react";
 import {
   Container,
@@ -13,35 +13,22 @@ import {
 } from "@mui/material";
 import backgroundImage from "./assets/board.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import Card from "./components/card";
+import {  ref, set } from 'firebase/database';
+import db from "./db/firebase";
+
+function writeData() {
+  const dbRef = ref(db, 'path/to/data');
+  set(dbRef, {
+    name: 'John',
+    age: 3,
+    email: 'john@example.com'
+  });
+}
+
+writeData();
 
 
-
-import firebase from "firebase/app"
-import "firebase/firestore"
-import "firebase/auth"
-import {useAuthState} from "react-firebase-hooks/auth";
-import {useColletionData} from "react-firebase-hooks/firestore";
-
-firebase.initializeApp({
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
-
-
-
-})
-const auth = firebase.auth();
-const firestore = firebase.firestore();
-
-
-const apiKey = process.env.REACT_APP_TEST;
-console.log(apiKey);
 const theme = createTheme({
   palette: {
     mode: "dark",
@@ -52,6 +39,8 @@ const theme = createTheme({
     },
     secondary: {
       main: "#ECB365",
+      light: "#ECB365",
+      dark: "#ECB365",
     },
     background: {
       default: "#041C32",
@@ -73,24 +62,42 @@ function App() {
 
   const handleMenuSelection = (selection: number): void => {
     setShowSection(selection);
+
   };
 
+  const players = () => (
+    <>
+     <Typography sx={{color:"text.primary"}}>Player</Typography>
+    </>
+  );
+  
   const npcs = () => (
     <>
       {allNpcChars.map((character, index) => (
-        <Card data={character} key={index}/>
+        <Card data={character} key={index} />
       ))}
     </>
   );
   const locations = () => (
     <>
-     
+     <Typography sx={{color:"text.primary"}}>Locations</Typography>
     </>
   );
-  const layouts = [npcs, locations,npcs, locations];
+  const sessions = () => (
+    <>
+     <Typography sx={{color:"text.primary"}}>Sessions</Typography>
+    </>
+  );
+  const add = () => (
+    <>
+     <Typography sx={{color:"text.primary"}}>Add</Typography>
+    </>
+  );
+
+
+  const layouts = [players,npcs,  locations, sessions, add];
 
   const ActiveLayout = layouts[showSection];
-
 
   const characterFriends = [
     { name: "Fiora Lanka", degree: 10 },
@@ -210,7 +217,7 @@ function App() {
               alignItems: "center",
             }}
           >
-            <Button
+              <Button
               sx={{
                 m: 0,
                 p: 1,
@@ -220,6 +227,20 @@ function App() {
                 borderRadius: 0,
               }}
               onClick={() => handleMenuSelection(0)}
+            >
+              <Typography>Players</Typography>
+            </Button>
+
+            <Button
+              sx={{
+                m: 0,
+                p: 1,
+                color: "text.primary",
+                bgcolor: "primary.main",
+                width: "100%",
+                borderRadius: 0,
+              }}
+              onClick={() => handleMenuSelection(1)}
             >
               <Typography>NPCS</Typography>
             </Button>
@@ -232,7 +253,7 @@ function App() {
                 width: "100%",
                 borderRadius: 0,
               }}
-              onClick={() => handleMenuSelection(1)}
+              onClick={() => handleMenuSelection(2)}
             >
               <Typography>Locations</Typography>
             </Button>
@@ -245,7 +266,7 @@ function App() {
                 width: "100%",
                 borderRadius: 0,
               }}
-              onClick={() => handleMenuSelection(2)}
+              onClick={() => handleMenuSelection(3)}
             >
               <Typography>Sessions</Typography>
             </Button>
@@ -255,11 +276,12 @@ function App() {
                 marginTop: "auto",
                 p: 1,
                 color: "text.primary",
-                width: "70%",
-                height: "20%",
+                bgcolor: "secondary.main",
+                width: "50%",
+                height: "auto",
                 alignSelf: "center",
               }}
-              onClick={() => handleMenuSelection(3)}
+              onClick={() => handleMenuSelection(4)}
             >
               <Typography sx={{ alignSelf: "center", fontSize: "4rem" }}>
                 +
@@ -296,65 +318,12 @@ function App() {
               p: 3,
               gap: 3,
             }}
-            
           >
             <ActiveLayout />
           </Box>
         </Box>
       </Box>
     </ThemeProvider>
-
-    /* <Box
-      sx={{
-
-        position: "fixed",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-    
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          position: "fixed",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          height: "100vh", 
-          filter: "blur(5px)",
-          zIndex: "-10",
-        }}
-      ></Box>
-
-      <Container
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-
-          height: "100vh",
-          width: "100%",
-          p: 5,
-       
-        }}
-      >
-        <Container sx={{ p: 0, m: 0, display: "flex", width: "40%" }}>
-          <CharacterList
-            characterArray={allChars}
-            onItemClick={handleItemClick}
-          />
-        </Container>
-        <Container sx={{ p: 0, m: 0, display: "flex", width: "60%" }}>
-          {selectedItem && <Selected character={selectedItem} />}
-        </Container>
-      </Container>
-    </Box> */
   );
 }
 
