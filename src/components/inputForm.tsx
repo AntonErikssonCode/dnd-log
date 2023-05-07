@@ -60,7 +60,12 @@ function InputForm() {
     );
 
     const stringifyNewCharacter = JSON.stringify(newCharacter);
-    firebaseDB.setNpc(newCharacter.nameWithoutSpace(), stringifyNewCharacter);
+    firebaseDB.setNpc(newCharacter.nameWithoutSpace(), newCharacter);
+
+
+
+
+
 
     setFormData(initialData);
 

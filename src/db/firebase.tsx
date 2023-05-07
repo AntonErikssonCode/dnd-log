@@ -2,13 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, push, get } from 'firebase/database';
 import { DataSnapshot } from '@firebase/database';
 
-
+import { CharacterClass } from '../classes/Character';
 import firebaseConfig from './firebase.config';
 
 class FirebaseDB {
-  private db: any;
-  private npc: any;
-  private npcRef: any;
+  public db: any;
+  public npc: any;
+  public npcRef: any;
 
   constructor() {
     const app = initializeApp(firebaseConfig);
@@ -18,10 +18,13 @@ class FirebaseDB {
     this.npcRef = ref(this.db, this.npc);
   }
 
-  public setNpc(npcId: string, npcData: any) {
+  public setNpc(npcId: string, npcData: CharacterClass) {
     const specificRef = ref(this.db, this.npc + npcId );
+    const characterJson = npcData.toJson();
+/*     console.dir(characterJson); */
 
-    set(specificRef, npcData)
+
+    set(specificRef, characterJson)
       .then(() => {
         console.log(`NPC ${npcId} saved successfully.`);
       })
@@ -30,16 +33,22 @@ class FirebaseDB {
       });
   }
 
-  public getNpcData() {
-    return get(this.npcRef)
-      .then((snapshot: any) => {
-        const npcData = snapshot.val();
-        console.dir(npcData);
-      })
-      .catch((error: any) => {
-        console.error('Failed to get NPC data:', error);
-      });
+  public async getNpcData() {
+    const data: any[] = [];
+  
+    try {
+      const snapshot = await get(this.npcRef);
+      const npcData = snapshot.val();
+      for (const npcKey in npcData) {
+        const npc = npcData[npcKey];
+        data.push(npc);
+      }
+      return data;
+    } catch (error) {
+      console.error('Failed to get NPC data:', error);
+    }
   }
+  
 }
 
 const firebaseDB = new FirebaseDB();

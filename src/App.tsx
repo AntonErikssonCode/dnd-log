@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { CharacterClass, Friend, Enemy } from "./classes/Character";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -14,19 +14,23 @@ import {
 import backgroundImage from "./assets/board.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Card from "./components/card";
-import {  ref, set, push } from 'firebase/database';
+import {  ref, set, push, onValue  } from 'firebase/database';
 import firebaseDB from "./db/firebase";
 import InputForm from "./components/inputForm";
 import theme from "./theme/theme";
 
-
-firebaseDB.setNpc("ccc", "dx")
 
 
 
 function App() {
   const [selectedItem, setSelectedItem] = useState<CharacterClass | null>(null);
   const [showSection, setShowSection] = useState(4);
+  const [npcData, setNpcData] = useState([]);
+  
+  firebaseDB.getNpcData().then(data => {
+    setNpcData(data);
+  });
+
   function handleItemClick(item: CharacterClass) {
     setSelectedItem(item);
   }
@@ -35,8 +39,14 @@ function App() {
     setShowSection(selection);
 
   };
+  
+ 
+ firebaseDB.getNpcData();
+/* 
+  const rawData =  firebaseDB.getNpcData();
+  console.dir(rawData) */
+  
 
-  firebaseDB.getNpcData();
 
   
 
@@ -47,11 +57,11 @@ function App() {
   );
   
   const npcs = () => (
-    <>
-      {allNpcChars.map((character, index) => (
-        <Card data={character} key={index} />
-      ))}
-    </>
+  <>
+    {npcData.map((character, index) => (
+      <Card data={character} key={index} />
+    ))}
+  </>
   );
   const locations = () => (
     <>

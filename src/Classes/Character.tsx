@@ -58,5 +58,20 @@ export class CharacterClass {
   public nameWithoutSpace(): string {
     return this.name.replace(/\s/g, "");
   }
+
+
+
+  public toJson(): string {
+    return JSON.stringify({
+      encounterNum: this.encouterNum,
+      name: this.name,
+      title: this.title,
+      friends: this.friends,
+      enemys: this.enemys,
+      stats: this.stats,
+      gear: this.gear,
+      img: this.img,
+    });
+  }
   
 }
