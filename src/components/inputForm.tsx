@@ -48,29 +48,23 @@ function InputForm() {
     event.preventDefault();
     console.log(event);
 
-    const newCharacter = new CharacterClass(
-      3,
-      formData.name,
-      formData.title,
-      characterFriends,
-      characterEnemy,
-      characterStats,
-      characterGear,
-      "https://cg4.cgsociety.org/uploads/images/medium/claudiotumiati-the-old-knight-1-a01518b0-sboy.jpg"
-    );
+    const newCharacter = new CharacterClass({
+      encounterNum: 3,
+      name: formData.name,
+      title: formData.title,
+      friends: characterFriends,
+      enemies: characterEnemy,
+      stats: characterStats,
+      gear: characterGear,
+      img: "https://cg4.cgsociety.org/uploads/images/medium/claudiotumiati-the-old-knight-1-a01518b0-sboy.jpg",
+    });
 
-    const stringifyNewCharacter = JSON.stringify(newCharacter);
-    firebaseDB.setNpc(newCharacter.nameWithoutSpace(), newCharacter);
-
-
-
-
-
+/*     const stringifyNewCharacter = newCharacter.toJson();
+ */    firebaseDB.setNpc(newCharacter.nameWithoutSpace(), newCharacter);
 
     setFormData(initialData);
-
-    
   };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };

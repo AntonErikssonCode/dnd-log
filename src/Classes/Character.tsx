@@ -1,15 +1,14 @@
-
-export interface Friend {
+type Friend = {
   name: string;
   degree: number;
-}
+};
 
-export interface Enemy {
+type Enemy = {
   name: string;
   degree: number;
-}
+};
 
-export interface Stats {
+type Stats = {
   dex: string;
   str: string;
   con: string;
@@ -17,61 +16,62 @@ export interface Stats {
   cha: string;
   wis: string;
   ac: string;
-}
-export interface Gear {
+};
+
+type Gear = {
   name: string;
   dmg: string;
-}
+};
 
-
-
-export class CharacterClass {
-  encouterNum: number;
+type CharacterData = {
   name: string;
   title: string;
+};
 
+export class CharacterClass {
+  encounterNum: number;
+  name: string;
+  title: string;
   friends: Friend[];
-  enemys: Enemy[];
+  enemies: Enemy[];
   stats: Stats;
   gear: Gear[];
   img: string;
 
-  constructor(
-    encouterNum: number,
-    name: string,
-    title: string,
-    friends: Friend[],
-    enemys: Enemy[],
-    stats: Stats,
-    gear: Gear[],
-    img: string,
-  ) {
-    this.encouterNum = encouterNum;
-    this.name = name;
-    this.title = title;
-    this.friends = friends;
-    this.enemys = enemys;
-    this.stats = stats;
-    this.gear = gear;
-    this.img = img;
+  constructor(data: {
+    encounterNum: number;
+    name: string;
+    title: string;
+    friends: Friend[];
+    enemies: Enemy[];
+    stats: Stats;
+    gear: Gear[];
+    img: string;
+  }) {
+    this.encounterNum = data.encounterNum;
+    this.name = data.name;
+    this.title = data.title;
+    this.friends = data.friends;
+    this.enemies = data.enemies;
+    this.stats = data.stats;
+    this.gear = data.gear;
+    this.img = data.img;
   }
+
   public nameWithoutSpace(): string {
     return this.name.replace(/\s/g, "");
   }
 
-
-
   public toJson(): string {
     return JSON.stringify({
-      encounterNum: this.encouterNum,
+      encounterNum: this.encounterNum,
       name: this.name,
       title: this.title,
       friends: this.friends,
-      enemys: this.enemys,
+      enemies: this.enemies,
       stats: this.stats,
       gear: this.gear,
       img: this.img,
     });
   }
-  
 }

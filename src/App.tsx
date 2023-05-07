@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { CharacterClass, Friend, Enemy } from "./classes/Character";
+import { CharacterClass } from "./classes/Character";
 import { useState, useEffect } from "react";
 import {
   Container,
@@ -14,22 +14,41 @@ import {
 import backgroundImage from "./assets/board.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Card from "./components/card";
-import {  ref, set, push, onValue  } from 'firebase/database';
+import { ref, set, push, onValue } from "firebase/database";
 import firebaseDB from "./db/firebase";
 import InputForm from "./components/inputForm";
 import theme from "./theme/theme";
 
-
-
-
 function App() {
   const [selectedItem, setSelectedItem] = useState<CharacterClass | null>(null);
   const [showSection, setShowSection] = useState(4);
-  const [npcData, setNpcData] = useState([]);
+  const [npcData, setNpcData] = useState<any[] | undefined>(undefined);
+
+
   
-  firebaseDB.getNpcData().then(data => {
-    setNpcData(data);
-  });
+
+  
+  useEffect(() => {
+    firebaseDB.getNpcData().then((data) => {
+      let displayData: CharacterClass[] = [];
+      if (data == undefined) {
+        displayData = [];
+      }
+      else{
+        data.forEach((data)=>{
+        const newChar = new CharacterClass({ ...data });
+          displayData.push(newChar)
+        })
+
+
+        
+      }
+      setNpcData(displayData);
+    });
+  }, [showSection]);
+
+
+
 
   function handleItemClick(item: CharacterClass) {
     setSelectedItem(item);
@@ -37,50 +56,42 @@ function App() {
 
   const handleMenuSelection = (selection: number): void => {
     setShowSection(selection);
-
   };
-  
+
  
- firebaseDB.getNpcData();
-/* 
-  const rawData =  firebaseDB.getNpcData();
-  console.dir(rawData) */
-  
-
-
-  
 
   const players = () => (
     <>
-     <Typography sx={{color:"text.primary"}}>Player</Typography>
+      <Typography sx={{ color: "text.primary" }}>Player</Typography>
     </>
   );
-  
+
   const npcs = () => (
-  <>
-    {npcData.map((character, index) => (
-      <Card data={character} key={index} />
-    ))}
-  </>
+    <>
+      {npcData && npcData.length > 0 ? (
+        npcData.map((character, index) => <Card data={character} key={index} />)
+      ) : (
+        <p>No NPCs to display</p>
+      )}
+    </>
   );
   const locations = () => (
     <>
-     <Typography sx={{color:"text.primary"}}>Locations</Typography>
+      <Typography sx={{ color: "text.primary" }}>Locations</Typography>
     </>
   );
   const sessions = () => (
     <>
-     <Typography sx={{color:"text.primary"}}>Sessions</Typography>
+      <Typography sx={{ color: "text.primary" }}>Sessions</Typography>
     </>
   );
   const add = () => (
     <>
-  <InputForm/>
+      <InputForm />
     </>
   );
 
-
-  const layouts = [players,npcs,  locations, sessions, add];
+  const layouts = [players, npcs, locations, sessions, add];
 
   const ActiveLayout = layouts[showSection];
 
@@ -100,7 +111,7 @@ function App() {
   };
 
   const characterGear = [{ name: "BIG ASS SWORD", dmg: "2D10" }];
-
+/* 
   const mrAron = new CharacterClass(
     1,
     "Mr (Sir) Aron",
@@ -120,11 +131,8 @@ function App() {
     characterStats,
     characterGear,
     "https://i.pinimg.com/originals/76/5e/83/765e832e796316517b5a8acfa7647cde.png"
-  );
-
-  
-
-
+  ); */
+/* 
   const allNpcChars: CharacterClass[] = [
     mrAron,
     fiora,
@@ -161,7 +169,7 @@ function App() {
     mrAron,
     fiora,
     mrAron,
-  ];
+  ]; */
 
   return (
     <ThemeProvider theme={theme}>
@@ -205,7 +213,7 @@ function App() {
               alignItems: "center",
             }}
           >
-              <Button
+            <Button
               sx={{
                 m: 0,
                 p: 1,

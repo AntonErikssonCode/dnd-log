@@ -20,11 +20,7 @@ class FirebaseDB {
 
   public setNpc(npcId: string, npcData: CharacterClass) {
     const specificRef = ref(this.db, this.npc + npcId );
-    const characterJson = npcData.toJson();
-/*     console.dir(characterJson); */
-
-
-    set(specificRef, characterJson)
+    set(specificRef, npcData)
       .then(() => {
         console.log(`NPC ${npcId} saved successfully.`);
       })
@@ -41,10 +37,13 @@ class FirebaseDB {
       const npcData = snapshot.val();
       for (const npcKey in npcData) {
         const npc = npcData[npcKey];
+        console.dir(npc)
         data.push(npc);
       }
       return data;
-    } catch (error) {
+    } 
+    
+    catch (error) {
       console.error('Failed to get NPC data:', error);
     }
   }
