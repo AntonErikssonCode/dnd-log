@@ -69,7 +69,7 @@ function App() {
   const npcs = () => (
     <>
       {npcData && npcData.length > 0 ? (
-        npcData.map((character, index) => <Card data={character} key={index} />)
+        npcData.map((character, index) => <Card data={character} index={index+1} key={index} />)
       ) : (
         <p>No NPCs to display</p>
       )}

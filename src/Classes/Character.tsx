@@ -9,13 +9,13 @@ type Enemy = {
 };
 
 type Stats = {
-  dex: string;
-  str: string;
-  con: string;
-  int: string;
-  cha: string;
-  wis: string;
-  ac: string;
+  dex: number;
+  str: number;
+  con: number;
+  int: number;
+  cha: number;
+  wis: number;
+  ac: number;
 };
 
 type Gear = {
@@ -37,6 +37,7 @@ export class CharacterClass {
   stats: Stats;
   gear: Gear[];
   img: string;
+  description: string;
 
   constructor(data: {
     encounterNum: number;
@@ -47,6 +48,7 @@ export class CharacterClass {
     stats: Stats;
     gear: Gear[];
     img: string;
+    description: string;
   }) {
     this.encounterNum = data.encounterNum;
     this.name = data.name;
@@ -56,6 +58,7 @@ export class CharacterClass {
     this.stats = data.stats;
     this.gear = data.gear;
     this.img = data.img;
+    this.description = data.description;
   }
 
   public nameWithoutSpace(): string {
@@ -72,6 +75,7 @@ export class CharacterClass {
       stats: this.stats,
       gear: this.gear,
       img: this.img,
+      description: this.description,
     });
   }
 }

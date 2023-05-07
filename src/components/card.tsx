@@ -6,6 +6,7 @@ import { CharacterClass } from "../classes/Character";
 
 type Props = {
   data: CharacterClass;
+  index: number;
 };
 
 function Card(props: Props) {
@@ -46,6 +47,7 @@ function Card(props: Props) {
         bgcolor: "primary.main",
         height: isExpanded ? "90%" : "200px",
         width: isExpanded ? "90%" : "200px",
+        minWidth: isExpanded ? "70vw" : "200px",
         transition: "transform 0.2s ease-in-out",
         "&:hover":{
           transform:"scale(1.05)",
