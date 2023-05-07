@@ -37,6 +37,7 @@ function Card(props: Props) {
       sx={{
         p: 1,
         boxSizing: "border-box",
+        borderRadius: "0.2rem",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -79,7 +80,7 @@ function Card(props: Props) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              borderRadius:"5px"
+              borderRadius:"50px"
             }}
           >
             <Typography
@@ -116,7 +117,7 @@ function Card(props: Props) {
       <Box
         style={{
           height: "200px",
-          borderRadius: "0.2rem",
+          borderRadius: "2rem",
         }}
       />
     </Box>

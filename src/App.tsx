@@ -55,7 +55,7 @@ const theme = createTheme({
 
 function App() {
   const [selectedItem, setSelectedItem] = useState<CharacterClass | null>(null);
-  const [showSection, setShowSection] = useState(0);
+  const [showSection, setShowSection] = useState(1);
   function handleItemClick(item: CharacterClass) {
     setSelectedItem(item);
   }
