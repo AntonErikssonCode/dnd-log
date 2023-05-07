@@ -90,8 +90,8 @@ function InputForm() {
         ac: formData.ac,
       },
       gear: [{ name: formData.gear, dmg: formData.gear }],
-      img: "https://cg4.cgsociety.org/uploads/images/medium/claudiotumiati-the-old-knight-1-a01518b0-sboy.jpg",
-      description: "dasd",
+      img: formData.img,
+      description: formData.description,
     });
 
     firebaseDB.setNpc(newCharacter.nameWithoutSpace(), newCharacter);
