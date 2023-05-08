@@ -38,6 +38,7 @@ export class CharacterClass {
   gear: Gear[];
   img: string;
   description: string;
+  date: number;
 
   constructor(data: {
     encounterNum: number;
@@ -49,6 +50,7 @@ export class CharacterClass {
     gear: Gear[];
     img: string;
     description: string;
+    date: number;
   }) {
     this.encounterNum = data.encounterNum;
     this.name = data.name;
@@ -59,6 +61,7 @@ export class CharacterClass {
     this.gear = data.gear;
     this.img = data.img;
     this.description = data.description;
+    this.date = data.date;
   }
 
   public nameWithoutSpace(): string {
@@ -76,6 +79,7 @@ export class CharacterClass {
       gear: this.gear,
       img: this.img,
       description: this.description,
+      date: this.date,
     });
   }
 }

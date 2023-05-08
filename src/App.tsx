@@ -24,12 +24,12 @@ function App() {
   const [showSection, setShowSection] = useState(4);
   const [npcData, setNpcData] = useState<any[] | undefined>(undefined);
 
+  
+
   useEffect(() => {
     firebaseDB.getNpcData().then((data) => {
       let displayData: CharacterClass[] = [];
-      if (data == undefined) {
-        displayData = [];
-      } else {
+      if (data?.length) {
         data.forEach((data) => {
           const newChar = new CharacterClass({ ...data });
           displayData.push(newChar);
@@ -38,7 +38,8 @@ function App() {
       setNpcData(displayData);
     });
   }, [showSection]);
-
+   
+      
   function handleItemClick(item: CharacterClass) {
     setSelectedItem(item);
   }
@@ -214,14 +215,14 @@ function App() {
             sx={{
               /*  bgcolor: "background.paper", */
 
-              height: "94%",
+              height: "100%",
 
               borderRadius: "0.2rem",
               position: "fixed",
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "center",
-              alignItems: "flex-start",
+              alignItems: "center",
               overflowY: "auto",
               p: 3,
               gap: 3,

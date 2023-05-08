@@ -70,8 +70,6 @@ function InputForm() {
       gearName: "",
       gearDmg: "",
     }));
-    
-
   }
   function addFriend() {
     setFriendData((prevState) => [
@@ -99,14 +97,16 @@ function InputForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(event);
+
+    const currentDate = new Date();
+    const dateAsNumber = currentDate.getTime();
 
     const newCharacter = new CharacterClass({
       encounterNum: 0,
       name: formData.name,
       title: formData.title,
-      friends: friendData,
-      enemies: enemyData,
+      friends: friendData.length>0? friendData: [ { name: "No Friends", degree: 10 }],
+      enemies: enemyData.length>0? enemyData: [ { name: "No Enemies", degree: 10 }],
       stats: {
         dex: formData.dex,
         str: formData.str,
@@ -116,15 +116,19 @@ function InputForm() {
         wis: formData.wis,
         ac: formData.ac,
       },
-      gear: gearData,
+      gear: gearData.length>0? gearData: [ { name: "No Gear", dmg: "none" }],
       img: formData.img,
       description: formData.description,
+      date: dateAsNumber,
     });
+    console.dir(newCharacter);
 
     firebaseDB.setNpc(newCharacter.nameWithoutSpace(), newCharacter);
 
     setFormData(initialData);
-    setGearData([{ name: formData.gearName, dmg: formData.gearDmg }]);
+    setGearData([]);
+    setFriendData([]);
+    setEnemyData([]);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -179,17 +183,15 @@ function InputForm() {
             label="Gear Name"
             value={formData.gearName}
             onChange={handleChange}
-            required
             sx={{ width: "40%" }}
             margin="normal"
           />
           <TextField
             id="gearDmg"
             name="gearDmg"
-            label="Gear Damage"
+            label="Gear Info"
             value={formData.gearDmg}
             onChange={handleChange}
-            required
             sx={{ width: "40%" }}
             margin="normal"
           />
@@ -258,7 +260,6 @@ function InputForm() {
             label="Friend Name"
             value={formData.friendName}
             onChange={handleChange}
-            required
             sx={{ width: "40%" }}
             margin="normal"
           />
@@ -268,7 +269,6 @@ function InputForm() {
             label="Friend Degree"
             value={formData.friendDegree}
             onChange={handleChange}
-            required
             type="number"
             sx={{ width: "40%" }}
             margin="normal"
@@ -325,8 +325,6 @@ function InputForm() {
           })}
         </Box>
 
-
-
         <Box
           sx={{
             width: "100%",
@@ -341,7 +339,6 @@ function InputForm() {
             label="Enemy Name"
             value={formData.enemyName}
             onChange={handleChange}
-            required
             sx={{ width: "40%" }}
             margin="normal"
           />
@@ -351,7 +348,6 @@ function InputForm() {
             label="Enemy Degree"
             value={formData.enemyDegree}
             onChange={handleChange}
-            required
             type="number"
             inputProps={{ min: 0, max: 10 }}
             sx={{ width: "40%" }}
@@ -459,7 +455,6 @@ function InputForm() {
             sx={{ width: "15%" }}
             margin="normal"
             type="number"
-            
           />
           <TextField
             id="wis"
@@ -471,7 +466,6 @@ function InputForm() {
             sx={{ width: "15%" }}
             margin="normal"
             type="number"
-            
           />
           <TextField
             id="int"
@@ -483,7 +477,6 @@ function InputForm() {
             sx={{ width: "15%" }}
             margin="normal"
             type="number"
-            
           />
           <TextField
             id="cha"
@@ -495,7 +488,6 @@ function InputForm() {
             sx={{ width: "15%" }}
             margin="normal"
             type="number"
-            
           />
         </Box>
         <TextField
@@ -509,7 +501,6 @@ function InputForm() {
           margin="normal"
           type="number"
           inputProps={{ min: 0, max: 18 }}
-          
         />
       </Box>
       <Button type="submit" variant="contained" sx={{ mt: 3 }}>

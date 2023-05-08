@@ -409,7 +409,7 @@ function Card(props: Props) {
                   "text.primary" /* , position: "absolute", top: "0rem", right: "0" */,
               }}
             >
-              {data.encounterNum}
+              {props.index}
             </Typography>
           </Box>
 
