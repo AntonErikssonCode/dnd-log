@@ -78,7 +78,7 @@ function Card(props: Props) {
               sx={{
                 display: "flex",
                 width: "95%",
-                height: "36%",
+                height: "40%",
                 flexDirection: "column",
                 justifyContent: "space-between",
               }}
@@ -208,91 +208,96 @@ function Card(props: Props) {
                 </Typography>
               </Box>
             </Box>
-
-            <Box sx={{ height: "20%", pt: "5%" }}>
-              <Typography
-                sx={{
-                  color: "text.secondary",
-                  fontSize: "1.4rem",
-                  p:"1rem"
-                }}
-              >
-                Friends
-              </Typography>
-              <Box sx={{ height: "100%", display:"flex", gap:"1rem"}}>
-                {data.friends.map((friend) => {
-                  if (props.npcData !== undefined) { // Check if npcData exist
-                    const npc = props.npcData.find(
-                      (npc) => npc.name === friend.name // Check if enemy exist in corpus
-                    );
-                    console.dir(npc);
-                    if (npc) {
-                      return (
-                        <RelationsCard
-                          name={friend.name}
-                          degree={friend.degree}
-                          img={npc.img}
-                          relationType="friend"
-                        />
+            <Box
+              sx={{
+                display: "flex",
+                gap: "1rem",
+                flexDirection: "column",
+                pt: 2,
+              }}
+            >
+              <Box>
+                <Typography
+                  sx={{
+                    color: "text.secondary",
+                    fontSize: "1.2rem",
+                    pb: "0.1rem",
+                  }}
+                >
+                  Friends
+                </Typography>
+                <Box sx={{ height: "100%", display: "flex", gap: "1rem" }}>
+                  {data.friends.map((friend) => {
+                    if (props.npcData !== undefined) {
+                      // Check if npcData exist
+                      const npc = props.npcData.find(
+                        (npc) => npc.name === friend.name // Check if enemy exist in corpus
                       );
+                      console.dir(npc);
+                      if (npc) {
+                        return (
+                          <RelationsCard
+                            name={friend.name}
+                            degree={friend.degree}
+                            img={npc.img}
+                            relationType="friend"
+                          />
+                        );
+                      } else {
+                        return (
+                          <RelationsCard
+                            name={friend.name}
+                            degree={friend.degree}
+                            img="https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
+                            relationType="friend"
+                          />
+                        );
+                      }
                     }
-                    else{
-                      return (
-                        <RelationsCard
-                          name={friend.name}
-                          degree={friend.degree}
-                          img="https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
-                          relationType="friend"
-                        
-                        />
-                      );
-
-                    }
-                  }
-                })}
+                  })}
+                </Box>
               </Box>
-            </Box>
-            <Box sx={{ height: "20%", pt: "5%" }}>
-              <Typography
-                sx={{
-                  color: "text.secondary",
-                  fontSize: "1.4rem",
-                  p:"1rem"
-                }}
-              >
-                Enemies
-              </Typography>
-              <Box sx={{ height: "100%", display:"flex", gap:"1rem"}}>
-                {data.enemies.map((enemy) => {
-                  if (props.npcData !== undefined) { // Check if npcData exist
-                    const npc = props.npcData.find(
-                      (npc) => npc.name === enemy.name // Check if enemy exist in corpus
-                    );
-                    console.dir(npc);
-                    if (npc) {
-                      return (
-                        <RelationsCard
-                          name={enemy.name}
-                          degree={enemy.degree}
-                          img={npc.img}
-                          relationType="enemy"
-                        />
-                      );
-                    }
-                    else{
-                      return (
-                        <RelationsCard
-                          name={enemy.name}
-                          degree={enemy.degree}
-                          img="https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
-                          relationType="enemy"
-                        
-                        />
-                      );
 
+              <Box>
+                <Typography
+                  sx={{
+                    color: "text.secondary",
+                    fontSize: "1.2rem",
+                    pb: "0.1rem",
+                  }}
+                >
+                  Enemies
+                </Typography>
+                <Box sx={{ height: "100%", display: "flex", gap: "1rem" }}>
+                  {data.enemies.map((enemy) => {
+                    if (props.npcData !== undefined) {
+                      // Check if npcData exist
+                      const npc = props.npcData.find(
+                        (npc) => npc.name === enemy.name // Check if enemy exist in corpus
+                      );
+                      console.dir(npc);
+                      if (npc) {
+                        return (
+                          <RelationsCard
+                            name={enemy.name}
+                            degree={enemy.degree}
+                            img={npc.img}
+                            relationType="enemy"
+                          />
+                        );
+                      } else {
+                        return (
+                          <RelationsCard
+                            name={enemy.name}
+                            degree={enemy.degree}
+                            img="https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
+                            relationType="enemy"
+                          />
+                        );
+                      }
                     }
-                  }
-                })}
+                  })}
+                </Box>
               </Box>
             </Box>
           </Box>
@@ -311,22 +316,32 @@ function Card(props: Props) {
                 style={{ width: "100%", borderRadius: "0.5rem" }}
               />
             </Box>
-            <Typography
-              sx={{ color: "text.primary", fontSize: "1.4rem", p: "1rem" }}
-            >
-              {data.description}
-            </Typography>
 
-            <Box>
+            <Box sx={{ py: "1rem", overflowY:"auto"}}>
               <Typography
                 sx={{
                   color: "text.secondary",
                   fontSize: "1.2rem",
-                  px: "1rem",
-                  pt: "5%",
                 }}
               >
-                Equipment:
+                Description
+              </Typography>
+              <Typography
+                sx={{ color: "text.primary", fontSize: "1rem", px: "1rem" }}
+              >
+                {data.description}
+              </Typography>
+            </Box>
+
+            <Box sx={{ py: "1rem", overflowY:"auto"}}>
+              <Typography
+                sx={{
+                  color: "text.secondary",
+                  fontSize: "1.2rem",
+                  p: 0,
+                }}
+              >
+                Equipment
               </Typography>
               {data.gear.map((gear) => {
                 return (
@@ -337,7 +352,7 @@ function Card(props: Props) {
                       sx={{
                         color: "text.primary",
                         fontSize: "1rem",
-                        p: "1rem",
+                        px: "1rem",
                       }}
                     >
                       {gear.name}
