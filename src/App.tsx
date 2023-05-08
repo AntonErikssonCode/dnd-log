@@ -24,31 +24,20 @@ function App() {
   const [showSection, setShowSection] = useState(4);
   const [npcData, setNpcData] = useState<any[] | undefined>(undefined);
 
-
-  
-
-  
   useEffect(() => {
     firebaseDB.getNpcData().then((data) => {
       let displayData: CharacterClass[] = [];
       if (data == undefined) {
         displayData = [];
-      }
-      else{
-        data.forEach((data)=>{
-        const newChar = new CharacterClass({ ...data });
-          displayData.push(newChar)
-        })
-
-
-        
+      } else {
+        data.forEach((data) => {
+          const newChar = new CharacterClass({ ...data });
+          displayData.push(newChar);
+        });
       }
       setNpcData(displayData);
     });
   }, [showSection]);
-
-
-
 
   function handleItemClick(item: CharacterClass) {
     setSelectedItem(item);
@@ -57,8 +46,6 @@ function App() {
   const handleMenuSelection = (selection: number): void => {
     setShowSection(selection);
   };
-
- 
 
   const players = () => (
     <>
@@ -69,7 +56,9 @@ function App() {
   const npcs = () => (
     <>
       {npcData && npcData.length > 0 ? (
-        npcData.map((character, index) => <Card data={character} index={index+1} key={index} />)
+        npcData.map((character, index) => (
+          <Card data={character} index={index + 1} key={index} />
+        ))
       ) : (
         <p>No NPCs to display</p>
       )}
@@ -92,84 +81,7 @@ function App() {
   );
 
   const layouts = [players, npcs, locations, sessions, add];
-
   const ActiveLayout = layouts[showSection];
-
-  const characterFriends = [
-    { name: "Fiora Lanka", degree: 10 },
-    { name: "Jeorgy", degree: 6 },
-  ];
-  const characterEnemy = [{ name: "Pada Padela", degree: 6 }];
-  const characterStats = {
-    dex: "10",
-    str: "18",
-    con: "18",
-    int: "12",
-    cha: "11",
-    wis: "8",
-    ac: "14",
-  };
-
-  const characterGear = [{ name: "BIG ASS SWORD", dmg: "2D10" }];
-/* 
-  const mrAron = new CharacterClass(
-    1,
-    "Mr (Sir) Aron",
-    "Knight",
-    characterFriends,
-    characterEnemy,
-    characterStats,
-    characterGear,
-    "https://cg4.cgsociety.org/uploads/images/medium/claudiotumiati-the-old-knight-1-a01518b0-sboy.jpg"
-  );
-  const fiora = new CharacterClass(
-    2,
-    "Fiora Lanka",
-    "Princess",
-    characterFriends,
-    characterEnemy,
-    characterStats,
-    characterGear,
-    "https://i.pinimg.com/originals/76/5e/83/765e832e796316517b5a8acfa7647cde.png"
-  ); */
-/* 
-  const allNpcChars: CharacterClass[] = [
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-    fiora,
-    mrAron,
-  ]; */
 
   return (
     <ThemeProvider theme={theme}>
@@ -218,7 +130,7 @@ function App() {
                 m: 0,
                 p: 1,
                 color: "text.primary",
-                bgcolor: "primary.main",
+                bgcolor: "secondary.main",
                 width: "100%",
                 borderRadius: 0,
               }}
@@ -232,7 +144,7 @@ function App() {
                 m: 0,
                 p: 1,
                 color: "text.primary",
-                bgcolor: "primary.main",
+                bgcolor: "secondary.main",
                 width: "100%",
                 borderRadius: 0,
               }}
@@ -245,7 +157,7 @@ function App() {
                 m: 0,
                 p: 1,
                 color: "text.primary",
-                bgcolor: "primary.main",
+                bgcolor: "secondary.main",
                 width: "100%",
                 borderRadius: 0,
               }}
@@ -258,7 +170,7 @@ function App() {
                 m: 0,
                 p: 1,
                 color: "text.primary",
-                bgcolor: "primary.main",
+                bgcolor: "secondary.main",
                 width: "100%",
                 borderRadius: 0,
               }}
@@ -270,9 +182,9 @@ function App() {
               variant="contained"
               sx={{
                 marginTop: "auto",
-                p: 1,
+                p: 2,
                 color: "text.primary",
-                bgcolor: "secondary.main",
+                bgcolor: "primary.main",
                 width: "50%",
                 height: "auto",
                 alignSelf: "center",

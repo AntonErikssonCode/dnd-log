@@ -36,28 +36,199 @@ function Card(props: Props) {
     <Box
       ref={ref}
       sx={{
-        p: 1,
         boxSizing: "border-box",
-        borderRadius: "0.2rem",
+        borderRadius: "0.5rem",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "lightgray",
+        justifyContent: isExpanded ? "flex-start" : "center",
+
         cursor: "pointer",
-        bgcolor: "primary.main",
-        height: isExpanded ? "90%" : "200px",
-        width: isExpanded ? "90%" : "200px",
-        minWidth: isExpanded ? "70vw" : "200px",
+        bgcolor: "secondary.main",
+        p: isExpanded ? "2rem" : "0",
+        height: isExpanded ? "90%" : "220px",
+        width: isExpanded ? "90%" : "180px",
+        minWidth: isExpanded ? "70vw" : "180px",
         transition: "transform 0.2s ease-in-out",
-        "&:hover":{
-          transform:"scale(1.05)",
-          
-        }
+        "&:hover": {
+          transform: "scale(1.05)",
+        },
       }}
       onClick={handleCardClick}
     >
       {isExpanded ? (
-        <Typography>{data.name + data.name}</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              width: "60%",
+              flexDirection: "row",
+              height: "36%",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                width: "95%",
+
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography variant="h2" sx={{ color: "text.primary" }}>
+                {data.name}
+              </Typography>
+              <Typography variant="h3" sx={{ color: "text.secondary" }}>
+                {data.title}
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "100%",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  fontSize: "1.2rem",
+                  mt: "1rem",
+                  gap: "0.4rem",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography
+                  sx={{
+                    width: "24%",
+                    fontSize: "1.6rem",
+                    bgcolor: "background.default",
+                    p: "0.5rem",
+                    borderRadius: "0.5rem",
+                    color: "text.primary",
+                    alignSelf: "center",
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                  }}
+                >
+                  {"Dex: " + data.stats.dex}
+                </Typography>
+                <Typography
+                  sx={{
+                    width: "24%",
+                    fontSize: "1.6rem",
+                    bgcolor: "background.default",
+                    p: "0.5rem",
+                    borderRadius: "0.5rem",
+                    color: "text.primary",
+                    alignSelf: "center",
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                  }}
+                >
+                  {"Str: " + data.stats.str}
+                </Typography>
+                <Typography
+                  sx={{
+                    width: "24%",
+                    fontSize: "1.6rem",
+                    bgcolor: "background.default",
+                    p: "0.5rem",
+                    borderRadius: "0.5rem",
+                    color: "text.primary",
+                    alignSelf: "center",
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                  }}
+                >
+                  {"Con: " + data.stats.con}
+                </Typography>
+                <Typography
+                  sx={{
+                    width: "24%",
+                    fontSize: "1.6rem",
+                    bgcolor: "background.default",
+                    p: "0.5rem",
+                    borderRadius: "0.5rem",
+                    color: "text.primary",
+                    alignSelf: "center",
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                  }}
+                >
+                  {"Wis: " + data.stats.wis}
+                </Typography>
+                <Typography
+                  sx={{
+                    width: "24%",
+                    fontSize: "1.6rem",
+                    bgcolor: "background.default",
+                    p: "0.5rem",
+                    borderRadius: "0.5rem",
+                    color: "text.primary",
+                    alignSelf: "center",
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                  }}
+                >
+                  {"Int: " + data.stats.int}
+                </Typography>
+                <Typography
+                  sx={{
+                    width: "24%",
+                    fontSize: "1.6rem",
+                    bgcolor: "background.default",
+                    p: "0.5rem",
+                    borderRadius: "0.5rem",
+                    color: "text.primary",
+                    alignSelf: "center",
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                  }}
+                >
+                  {"Cha: " + data.stats.cha}
+                </Typography>
+                <Typography
+                  sx={{
+                    width: "100%",
+                    fontSize: "1.6rem",
+                    bgcolor: "background.default",
+                    p: "0.5rem",
+                    borderRadius: "0.5rem",
+                    color: "text.primary",
+                    alignSelf: "center",
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                  }}
+                >
+                  {"Armor Class: " + data.stats.ac}
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box sx={{ display: "flex", width: "40%", flexDirection: "column" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "flex-end",
+              }}
+            >
+              <img
+                src={data.img}
+                alt={data.name}
+                style={{ width: "100%", borderRadius: "0.5rem" }}
+              />
+            </Box>
+            <Typography
+              sx={{ color: "text.primary", fontSize: "1.4rem", p: "1rem" }}
+            >
+              {data.description}
+            </Typography>
+          </Box>
+        </Box>
       ) : (
         <Box
           sx={{
@@ -72,25 +243,26 @@ function Card(props: Props) {
         >
           <Box
             sx={{
-              p:0,
+              p: 0,
               position: "absolute",
-              top: "-1.1rem",
-              left: "68px",
+              top: "0.5rem",
+              right: "0.7rem",
               bgcolor: "background.paper",
-              width: "60px",
-             
+              width: "auto",
+              px: "0.5rem",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              borderRadius:"50px"
+
+              borderRadius: "0.5rem",
+              zIndex: "2",
             }}
           >
             <Typography
               sx={{
-                p:0,
-                fontSize:"0.8rem",
+                p: 0,
+                fontSize: "0.8rem",
                 color:
-               
                   "text.primary" /* , position: "absolute", top: "0rem", right: "0" */,
               }}
             >
@@ -105,7 +277,11 @@ function Card(props: Props) {
               justifyContent: "center",
             }}
           >
-            <img src={data.img} alt={data.name} style={{ width: "70%" }} />
+            <img
+              src={data.img}
+              alt={data.name}
+              style={{ width: "90%", borderRadius: "0.5rem", zIndex: "1" }}
+            />
           </Box>
 
           <Typography sx={{ color: "text.primary" }}>{data.name}</Typography>

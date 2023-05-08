@@ -1,25 +1,56 @@
 import { createTheme } from "@mui/material/styles";
 
+// Define the theme colors
 const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#064663",
-      light: "#064663",
-      dark: "#064663",
+      main: "#00ffff", // highlight
     },
     secondary: {
-      main: "#ECB365",
-      light: "#ECB365",
-      dark: "#ECB365",
+      main: "#212121", // bright grey
     },
     background: {
-      default: "#041C32",
-      paper: "#04293A",
+      paper: "#212121", // dark gray
+      default: "#121212", // black
+      
     },
     text: {
-      primary: "#ffffff",
-      secondary: "#dddddd",
+      primary: "#FFFFFF", // white
+      secondary: "#BDBDBD", // light gray
+    },
+  },
+
+  // Define the typography styles
+  typography: {
+    fontFamily: "Roboto, sans-serif",
+    h1: {
+      fontSize: "3rem",
+      fontWeight: "bold",
+      letterSpacing: "0.1rem",
+      margin: "2rem 0",
+    },
+    h2: {
+      fontSize: "2.6rem",
+      fontWeight: "bold",
+      letterSpacing: "0.1rem",
+      
+    },
+    h3: {
+      fontSize: "2rem",
+      fontWeight: "bold",
+      letterSpacing: "0.1rem",
+  
+    },
+    body1: {
+      fontSize: "1rem",
+      lineHeight: "1.5rem",
+  
+    },
+    body2: {
+      fontSize: "0.875rem",
+      lineHeight: "1.25rem",
+      
     },
   },
 });
