@@ -69,15 +69,15 @@ function Card(props: Props) {
             sx={{
               display: "flex",
               width: "60%",
-              flexDirection: "row",
-              height: "36%",
+              flexDirection: "column",
+              height: "100%",
             }}
           >
             <Box
               sx={{
                 display: "flex",
                 width: "95%",
-
+                height: "36%",
                 flexDirection: "column",
                 justifyContent: "space-between",
               }}
@@ -207,7 +207,19 @@ function Card(props: Props) {
                 </Typography>
               </Box>
             </Box>
+
+            <Box>
+              <Typography
+                sx={{
+                  color: "text.secondary",
+                  fontSize: "1.2rem",
+                  px: "1rem",
+                  pt: "5%",
+                }}
+              ></Typography>
+            </Box>
           </Box>
+
           <Box sx={{ display: "flex", width: "40%", flexDirection: "column" }}>
             <Box
               sx={{
@@ -227,6 +239,45 @@ function Card(props: Props) {
             >
               {data.description}
             </Typography>
+
+            <Box>
+              <Typography
+                sx={{
+                  color: "text.secondary",
+                  fontSize: "1.2rem",
+                  px: "1rem",
+                  pt: "5%",
+                }}
+              >
+                Equipment:
+              </Typography>
+              {data.gear.map((gear) => {
+                return (
+                  <Box
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography
+                      sx={{
+                        color: "text.primary",
+                        fontSize: "1rem",
+                        p: "1rem",
+                      }}
+                    >
+                      {gear.name}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: "text.primary",
+                        fontSize: "1rem",
+                        p: "1rem",
+                      }}
+                    >
+                      {gear.dmg}
+                    </Typography>
+                  </Box>
+                );
+              })}
+            </Box>
           </Box>
         </Box>
       ) : (
