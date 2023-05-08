@@ -1,30 +1,17 @@
 import React, { useState } from "react";
-import { Container, Box, Button, TextField } from "@mui/material";
+import { Container, Box, Button, TextField, Typography } from "@mui/material";
 import { CharacterClass } from "../classes/Character";
 import firebaseDB from "../db/firebase";
-
-const characterFriends = [
-  { name: "Fiora Lanka", degree: 10 },
-  { name: "Jeorgy", degree: 6 },
-];
-const characterEnemy = [{ name: "Pada Padela", degree: 6 }];
-const characterStats = {
-  dex: "10",
-  str: "18",
-  con: "18",
-  int: "12",
-  cha: "11",
-  wis: "8",
-  ac: "14",
-};
-
-const characterGear = [{ name: "BIG ASS SWORD", dmg: "2D10" }];
 
 type CharacterData = {
   name: string;
   title: string;
-  friends: string;
-  enemies: string;
+  friends: any[];
+  friendName: string;
+  friendDegree: number;
+  enemies: any[];
+  enemyName: string;
+  enemyDegree: number;
   dex: number;
   str: number;
   con: number;
@@ -41,8 +28,12 @@ type CharacterData = {
 const initialData: CharacterData = {
   name: "",
   title: "",
-  friends: "",
-  enemies: "",
+  friends: [],
+  friendName: "",
+  friendDegree: 0,
+  enemies: [],
+  enemyName: "",
+  enemyDegree: 0,
   dex: 0,
   str: 0,
   con: 0,
@@ -59,6 +50,52 @@ const initialData: CharacterData = {
 
 function InputForm() {
   const [formData, setFormData] = useState<CharacterData>(initialData);
+  const [gearData, setGearData] = useState<{ name: string; dmg: string }[]>([]);
+
+  const [friendData, setFriendData] = useState<
+    { name: string; degree: number }[]
+  >([]);
+
+  const [enemyData, setEnemyData] = useState<
+    { name: string; degree: number }[]
+  >([]);
+
+  function addGear() {
+    setGearData((prevState) => [
+      ...prevState,
+      { name: formData.gearName, dmg: formData.gearDmg },
+    ]);
+    setFormData((prevState) => ({
+      ...prevState,
+      gearName: "",
+      gearDmg: "",
+    }));
+    
+
+  }
+  function addFriend() {
+    setFriendData((prevState) => [
+      ...prevState,
+      { name: formData.friendName, degree: formData.friendDegree },
+    ]);
+    setFormData((prevState) => ({
+      ...prevState,
+      friendName: "",
+      friendDegree: 0,
+    }));
+  }
+
+  function addEnemy() {
+    setEnemyData((prevState) => [
+      ...prevState,
+      { name: formData.enemyName, degree: formData.enemyDegree },
+    ]);
+    setFormData((prevState) => ({
+      ...prevState,
+      enemyName: "",
+      enemyDegree: 0,
+    }));
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -68,8 +105,8 @@ function InputForm() {
       encounterNum: 0,
       name: formData.name,
       title: formData.title,
-      friends: [{ name: formData.enemies, degree: 0 }],
-      enemies: [{ name: formData.friends, degree: 10 }],
+      friends: friendData,
+      enemies: enemyData,
       stats: {
         dex: formData.dex,
         str: formData.str,
@@ -79,7 +116,7 @@ function InputForm() {
         wis: formData.wis,
         ac: formData.ac,
       },
-      gear: [{ name: formData.gearName, dmg: formData.gearDmg }],
+      gear: gearData,
       img: formData.img,
       description: formData.description,
     });
@@ -87,6 +124,7 @@ function InputForm() {
     firebaseDB.setNpc(newCharacter.nameWithoutSpace(), newCharacter);
 
     setFormData(initialData);
+    setGearData([{ name: formData.gearName, dmg: formData.gearDmg }]);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,7 +165,14 @@ function InputForm() {
           margin="normal"
         />
 
-        <Box  sx={{ width: "100%", display:"flex", justifyContent:"space-between", alignItems:"center" }}> 
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <TextField
             id="gearName"
             name="gearName"
@@ -148,32 +193,220 @@ function InputForm() {
             sx={{ width: "40%" }}
             margin="normal"
           />
-          <Button  variant="outlined" sx={{ /* height:"100%"  */}}>
+          <Button
+            variant="outlined"
+            onClick={addGear}
+            sx={
+              {
+                /* height:"100%"  */
+              }
+            }
+          >
             Add Gear
           </Button>
-
         </Box>
-        <TextField
-          id="friends"
-          name="friends"
-          label="Friends"
-          value={formData.friends}
-          onChange={handleChange}
-          required
-          sx={{ width: "100%" }}
-          margin="normal"
-        />
+        <Box>
+          {gearData.map((gear, index) => {
+            return (
+              <Box
+                key={"gear" + index}
+                sx={{
+                  width: "49%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Box>
+                  <Typography
+                    sx={{
+                      color: "text.primary",
+                      fontSize: "1rem",
+                      px: "1rem",
+                    }}
+                  >
+                    {gear.name}
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    sx={{
+                      color: "text.primary",
+                      fontSize: "1rem",
+                      px: "1rem",
+                    }}
+                  >
+                    {gear.dmg}
+                  </Typography>
+                </Box>
+              </Box>
+            );
+          })}
+        </Box>
 
-        <TextField
-          id="enemies"
-          name="enemies"
-          label="Enemies "
-          value={formData.enemies}
-          onChange={handleChange}
-          required
-          sx={{ width: "100%" }}
-          margin="normal"
-        />
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <TextField
+            id="friendName"
+            name="friendName"
+            label="Friend Name"
+            value={formData.friendName}
+            onChange={handleChange}
+            required
+            sx={{ width: "40%" }}
+            margin="normal"
+          />
+          <TextField
+            id="friendDegree"
+            name="friendDegree"
+            label="Friend Degree"
+            value={formData.friendDegree}
+            onChange={handleChange}
+            required
+            type="number"
+            sx={{ width: "40%" }}
+            margin="normal"
+            inputProps={{ min: 0, max: 10 }}
+          />
+          <Button
+            variant="outlined"
+            onClick={addFriend}
+            sx={
+              {
+                /* height:"100%"  */
+              }
+            }
+          >
+            Add Friend
+          </Button>
+        </Box>
+        <Box>
+          {friendData.map((friend, index) => {
+            return (
+              <Box
+                key={"friend" + index}
+                sx={{
+                  width: "49%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Box>
+                  <Typography
+                    sx={{
+                      color: "text.primary",
+                      fontSize: "1rem",
+                      px: "1rem",
+                    }}
+                  >
+                    {friend.name}
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    sx={{
+                      color: "text.primary",
+                      fontSize: "1rem",
+                      px: "1rem",
+                    }}
+                  >
+                    {friend.degree}
+                  </Typography>
+                </Box>
+              </Box>
+            );
+          })}
+        </Box>
+
+
+
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <TextField
+            id="enemyName"
+            name="enemyName"
+            label="Enemy Name"
+            value={formData.enemyName}
+            onChange={handleChange}
+            required
+            sx={{ width: "40%" }}
+            margin="normal"
+          />
+          <TextField
+            id="enemyDegree"
+            name="enemyDegree"
+            label="Enemy Degree"
+            value={formData.enemyDegree}
+            onChange={handleChange}
+            required
+            type="number"
+            inputProps={{ min: 0, max: 10 }}
+            sx={{ width: "40%" }}
+            margin="normal"
+          />
+          <Button
+            variant="outlined"
+            onClick={addEnemy}
+            sx={
+              {
+                /* height:"100%"  */
+              }
+            }
+          >
+            Add Enemy
+          </Button>
+        </Box>
+        <Box>
+          {enemyData.map((enemy, index) => {
+            return (
+              <Box
+                key={"enemy" + index}
+                sx={{
+                  width: "49%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Box>
+                  <Typography
+                    sx={{
+                      color: "text.primary",
+                      fontSize: "1rem",
+                      px: "1rem",
+                    }}
+                  >
+                    {enemy.name}
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    sx={{
+                      color: "text.primary",
+                      fontSize: "1rem",
+                      px: "1rem",
+                    }}
+                  >
+                    {enemy.degree}
+                  </Typography>
+                </Box>
+              </Box>
+            );
+          })}
+        </Box>
         <TextField
           id="img"
           name="img"
@@ -201,6 +434,8 @@ function InputForm() {
             required
             sx={{ width: "15%" }}
             margin="normal"
+            type="number"
+            inputProps={{ min: 0, max: 18 }}
           />
           <TextField
             id="str"
@@ -211,6 +446,8 @@ function InputForm() {
             required
             sx={{ width: "15%" }}
             margin="normal"
+            type="number"
+            inputProps={{ min: 0, max: 18 }}
           />
           <TextField
             id="con"
@@ -221,6 +458,8 @@ function InputForm() {
             required
             sx={{ width: "15%" }}
             margin="normal"
+            type="number"
+            
           />
           <TextField
             id="wis"
@@ -231,6 +470,8 @@ function InputForm() {
             required
             sx={{ width: "15%" }}
             margin="normal"
+            type="number"
+            
           />
           <TextField
             id="int"
@@ -241,6 +482,8 @@ function InputForm() {
             required
             sx={{ width: "15%" }}
             margin="normal"
+            type="number"
+            
           />
           <TextField
             id="cha"
@@ -251,6 +494,8 @@ function InputForm() {
             required
             sx={{ width: "15%" }}
             margin="normal"
+            type="number"
+            
           />
         </Box>
         <TextField
@@ -262,6 +507,9 @@ function InputForm() {
           required
           sx={{ width: "15%" }}
           margin="normal"
+          type="number"
+          inputProps={{ min: 0, max: 18 }}
+          
         />
       </Box>
       <Button type="submit" variant="contained" sx={{ mt: 3 }}>
