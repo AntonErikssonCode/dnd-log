@@ -136,7 +136,7 @@ function InputForm() {
   };
 
   return (
-    <Container component="form" onSubmit={handleSubmit} sx={{ width: "80%" }}>
+    <Container component="form" onSubmit={handleSubmit} sx={{ width: "80%", pt:2, pb:10}}>
       <Box>
         <TextField
           id="name"

@@ -97,6 +97,7 @@ function App() {
           display: "flex",
           m: 0,
           p: 0,
+       
         }}
       >
         <Box
@@ -192,7 +193,7 @@ function App() {
               }}
               onClick={() => handleMenuSelection(4)}
             >
-              <Typography sx={{ alignSelf: "center", fontSize: "4rem" }}>
+              <Typography sx={{ alignSelf: "center", fontSize: "4rem", color:"secondary.main"}}>
                 +
               </Typography>
             </Button>
@@ -203,27 +204,33 @@ function App() {
           sx={{
             m: 0,
 
-            bgcolor: "grey",
-            width: "82%",
+/*             bgcolor: "grey",
+ */            height:"100vh",
+            overflowY:"scroll",
+            width: "84%",
             position: "fixed",
             left: "16%",
+            top:0,
+            bottom:0,
+            right:0,
             display: "flex",
             justifyContent: "center",
+           
           }}
         >
           <Box
             sx={{
-              /*  bgcolor: "background.paper", */
+              
 
-              height: "100%",
+          
 
               borderRadius: "0.2rem",
-              position: "fixed",
+              position: "relative",
               display: "flex",
+              
               flexWrap: "wrap",
               justifyContent: "center",
               alignItems: "center",
-              overflowY: "auto",
               p: 3,
               gap: 3,
             }}
