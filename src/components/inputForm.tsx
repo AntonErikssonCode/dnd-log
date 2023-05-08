@@ -1,19 +1,5 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Typography,
-  List,
-  ListItem,
-  Box,
-  Button,
-  FormControl,
-  InputLabel,
-  Input,
-  FormHelperText,
-  TextField,
-  Select,
-  MenuItem,
-} from "@mui/material";
+import { Container, Box, Button, TextField } from "@mui/material";
 import { CharacterClass } from "../classes/Character";
 import firebaseDB from "../db/firebase";
 
@@ -46,7 +32,9 @@ type CharacterData = {
   int: number;
   cha: number;
   ac: number;
-  gear: string;
+  gear: string[];
+  gearName: string;
+  gearDmg: string;
   img: string;
   description: string;
 };
@@ -62,7 +50,9 @@ const initialData: CharacterData = {
   int: 0,
   cha: 0,
   ac: 0,
-  gear: "",
+  gear: [],
+  gearName: "",
+  gearDmg: "",
   img: "",
   description: "",
 };
@@ -89,7 +79,7 @@ function InputForm() {
         wis: formData.wis,
         ac: formData.ac,
       },
-      gear: [{ name: formData.gear, dmg: formData.gear }],
+      gear: [{ name: formData.gearName, dmg: formData.gearDmg }],
       img: formData.img,
       description: formData.description,
     });
@@ -104,7 +94,7 @@ function InputForm() {
   };
 
   return (
-    <Container component="form" onSubmit={handleSubmit}>
+    <Container component="form" onSubmit={handleSubmit} sx={{ width: "80%" }}>
       <Box>
         <TextField
           id="name"
@@ -136,17 +126,33 @@ function InputForm() {
           sx={{ width: "100%" }}
           margin="normal"
         />
-        <TextField
-          id="gear"
-          name="gear"
-          label="Gear"
-          value={formData.gear}
-          onChange={handleChange}
-          required
-          sx={{ width: "100%" }}
-          margin="normal"
-        />
 
+        <Box  sx={{ width: "100%", display:"flex", justifyContent:"space-between", alignItems:"center" }}> 
+          <TextField
+            id="gearName"
+            name="gearName"
+            label="Gear Name"
+            value={formData.gearName}
+            onChange={handleChange}
+            required
+            sx={{ width: "40%" }}
+            margin="normal"
+          />
+          <TextField
+            id="gearDmg"
+            name="gearDmg"
+            label="Gear Damage"
+            value={formData.gearDmg}
+            onChange={handleChange}
+            required
+            sx={{ width: "40%" }}
+            margin="normal"
+          />
+          <Button  variant="outlined" sx={{ /* height:"100%"  */}}>
+            Add Gear
+          </Button>
+
+        </Box>
         <TextField
           id="friends"
           name="friends"
@@ -168,7 +174,7 @@ function InputForm() {
           sx={{ width: "100%" }}
           margin="normal"
         />
-           <TextField
+        <TextField
           id="img"
           name="img"
           label="Character Image "
@@ -181,7 +187,7 @@ function InputForm() {
         <Box
           sx={{
             display: "flex",
-            gap: "1 rem",
+            gap: "0.2rem",
             justifyContent: "space-between",
             flexWrap: "wrap",
           }}
@@ -193,7 +199,7 @@ function InputForm() {
             value={formData.dex}
             onChange={handleChange}
             required
-            sx={{ width: "10%" }}
+            sx={{ width: "15%" }}
             margin="normal"
           />
           <TextField
@@ -203,7 +209,7 @@ function InputForm() {
             value={formData.str}
             onChange={handleChange}
             required
-            sx={{ width: "10%" }}
+            sx={{ width: "15%" }}
             margin="normal"
           />
           <TextField
@@ -213,7 +219,7 @@ function InputForm() {
             value={formData.con}
             onChange={handleChange}
             required
-            sx={{ width: "10%" }}
+            sx={{ width: "15%" }}
             margin="normal"
           />
           <TextField
@@ -223,7 +229,7 @@ function InputForm() {
             value={formData.wis}
             onChange={handleChange}
             required
-            sx={{ width: "10%" }}
+            sx={{ width: "15%" }}
             margin="normal"
           />
           <TextField
@@ -233,7 +239,7 @@ function InputForm() {
             value={formData.int}
             onChange={handleChange}
             required
-            sx={{ width: "10%" }}
+            sx={{ width: "15%" }}
             margin="normal"
           />
           <TextField
@@ -243,7 +249,7 @@ function InputForm() {
             value={formData.cha}
             onChange={handleChange}
             required
-            sx={{ width: "10%" }}
+            sx={{ width: "15%" }}
             margin="normal"
           />
         </Box>
@@ -254,7 +260,7 @@ function InputForm() {
           value={formData.ac}
           onChange={handleChange}
           required
-          sx={{ width: "10%" }}
+          sx={{ width: "15%" }}
           margin="normal"
         />
       </Box>
