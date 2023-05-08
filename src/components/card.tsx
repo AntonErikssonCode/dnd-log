@@ -209,31 +209,60 @@ function Card(props: Props) {
               </Box>
             </Box>
 
-            <Box sx={{ height: "25%", pt: "5%" }}>
+            <Box sx={{ height: "20%", pt: "5%" }}>
               <Typography
                 sx={{
                   color: "text.secondary",
-                  fontSize: "1.2rem",
-                  px: "1rem",
-                  pt: "5%",
+                  fontSize: "1.4rem",
+                  p:"1rem"
                 }}
               >
                 Friends
               </Typography>
-              <Box sx={{ height: "100%" }}></Box>
+              <Box sx={{ height: "100%", display:"flex", gap:"1rem"}}>
+                {data.friends.map((friend) => {
+                  if (props.npcData !== undefined) { // Check if npcData exist
+                    const npc = props.npcData.find(
+                      (npc) => npc.name === friend.name // Check if enemy exist in corpus
+                    );
+                    console.dir(npc);
+                    if (npc) {
+                      return (
+                        <RelationsCard
+                          name={friend.name}
+                          degree={friend.degree}
+                          img={npc.img}
+                          relationType="friend"
+                        />
+                      );
+                    }
+                    else{
+                      return (
+                        <RelationsCard
+                          name={friend.name}
+                          degree={friend.degree}
+                          img="https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
+                          relationType="friend"
+                        
+                        />
+                      );
+
+                    }
+                  }
+                })}
+              </Box>
             </Box>
-            <Box sx={{ height: "25%", pt: "5%" }}>
+            <Box sx={{ height: "20%", pt: "5%" }}>
               <Typography
                 sx={{
                   color: "text.secondary",
-                  fontSize: "1.2rem",
-                  px: "1rem",
-                  pt: "5%",
+                  fontSize: "1.4rem",
+                  p:"1rem"
                 }}
               >
                 Enemies
               </Typography>
-              <Box sx={{ height: "100%" }}>
+              <Box sx={{ height: "100%", display:"flex", gap:"1rem"}}>
                 {data.enemies.map((enemy) => {
                   if (props.npcData !== undefined) { // Check if npcData exist
                     const npc = props.npcData.find(
@@ -246,6 +275,7 @@ function Card(props: Props) {
                           name={enemy.name}
                           degree={enemy.degree}
                           img={npc.img}
+                          relationType="enemy"
                         />
                       );
                     }
@@ -255,6 +285,8 @@ function Card(props: Props) {
                           name={enemy.name}
                           degree={enemy.degree}
                           img="https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
+                          relationType="enemy"
+                        
                         />
                       );
 
