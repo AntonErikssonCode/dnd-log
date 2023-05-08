@@ -3,10 +3,11 @@ import { useTheme } from "@mui/material/styles";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Box, Typography } from "@mui/material";
 import { CharacterClass } from "../classes/Character";
-
+import RelationsCard from "./relationsCard";
 type Props = {
   data: CharacterClass;
   index: number;
+  npcData: any[] | undefined;
 };
 
 function Card(props: Props) {
@@ -208,7 +209,7 @@ function Card(props: Props) {
               </Box>
             </Box>
 
-            <Box>
+            <Box sx={{ height: "25%", pt: "5%" }}>
               <Typography
                 sx={{
                   color: "text.secondary",
@@ -216,7 +217,51 @@ function Card(props: Props) {
                   px: "1rem",
                   pt: "5%",
                 }}
-              ></Typography>
+              >
+                Friends
+              </Typography>
+              <Box sx={{ height: "100%" }}></Box>
+            </Box>
+            <Box sx={{ height: "25%", pt: "5%" }}>
+              <Typography
+                sx={{
+                  color: "text.secondary",
+                  fontSize: "1.2rem",
+                  px: "1rem",
+                  pt: "5%",
+                }}
+              >
+                Enemies
+              </Typography>
+              <Box sx={{ height: "100%" }}>
+                {data.enemies.map((enemy) => {
+                  if (props.npcData !== undefined) { // Check if npcData exist
+                    const npc = props.npcData.find(
+                      (npc) => npc.name === enemy.name // Check if enemy exist in corpus
+                    );
+                    console.dir(npc);
+                    if (npc) {
+                      return (
+                        <RelationsCard
+                          name={enemy.name}
+                          degree={enemy.degree}
+                          img={npc.img}
+                        />
+                      );
+                    }
+                    else{
+                      return (
+                        <RelationsCard
+                          name={enemy.name}
+                          degree={enemy.degree}
+                          img="https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
+                        />
+                      );
+
+                    }
+                  }
+                })}
+              </Box>
             </Box>
           </Box>
 
