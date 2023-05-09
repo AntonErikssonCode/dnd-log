@@ -227,8 +227,8 @@ function App() {
           sx={{
             m: 0,
 
-/*             bgcolor: "grey",
- */            height:"100vh",
+           
+            height: "100vh",
             overflowY:"scroll",
             width: "84%",
             position: "fixed",
@@ -238,6 +238,8 @@ function App() {
             right:0,
             display: "flex",
             justifyContent: "center",
+            bgcolor: "red",
+          
            
           }}
         >
@@ -246,7 +248,7 @@ function App() {
               
 
           
-
+              bgcolor: "grey",
               borderRadius: "0.2rem",
               position: "relative",
               display: "flex",
@@ -254,8 +256,15 @@ function App() {
               flexWrap: "wrap",
               justifyContent: "center",
               alignItems: "center",
-              p: 3,
+              
+             
               gap: 3,
+              py:10,
+              maxHeight: "100vh", // set max-height to viewport height minus 80px for header
+              overflowY: "auto", // enable scrolling when content exceeds max-height
+            
+          
+             
             }}
           >
             <ActiveLayout />
