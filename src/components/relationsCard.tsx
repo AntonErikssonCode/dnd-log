@@ -42,7 +42,7 @@ function RelationsCard(props: Props) {
       ? enemyColors[props.degree]
       : friendColors[props.degree];
 
-  const width = 30 + 6.36363636364 * props.degree + "%";
+  const width =  9.2 * props.degree + "%";
 
   return (
     <Paper
