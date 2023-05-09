@@ -1,7 +1,7 @@
 import { useTheme } from "@mui/material/styles";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Paper } from "@mui/material";
 import { CharacterClass } from "../classes/Character";
 import RelationsCard from "./relationsCard";
 type Props = {
@@ -42,6 +42,8 @@ function Card(props: Props) {
         display: "flex",
         alignItems: "center",
         justifyContent: isExpanded ? "flex-start" : "center",
+        boxShadow:
+          "0px 2px 4px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.2)",
 
         cursor: "pointer",
         bgcolor: "secondary.main",
@@ -101,11 +103,12 @@ function Card(props: Props) {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography
+                <Paper
                   sx={{
-                    width: "24%",
+                    width: "10%",
                     fontSize: "1.6rem",
-                    bgcolor: "background.default",
+                    backgroundImage:
+                      "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
                     p: "0.5rem",
                     borderRadius: "0.5rem",
                     color: "text.primary",
@@ -114,13 +117,15 @@ function Card(props: Props) {
                     textAlign: "center",
                   }}
                 >
-                  {"Dex: " + data.stats.dex}
-                </Typography>
-                <Typography
+                  {" "}
+                  <Typography> {"Dex: " + data.stats.dex} </Typography>
+                </Paper>
+                <Paper
                   sx={{
-                    width: "24%",
+                    width: "10%",
                     fontSize: "1.6rem",
-                    bgcolor: "background.default",
+                    backgroundImage:
+                      "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
                     p: "0.5rem",
                     borderRadius: "0.5rem",
                     color: "text.primary",
@@ -129,13 +134,14 @@ function Card(props: Props) {
                     textAlign: "center",
                   }}
                 >
-                  {"Str: " + data.stats.str}
-                </Typography>
-                <Typography
+                  <Typography> {"Str: " + data.stats.str} </Typography>
+                </Paper>
+                <Paper
                   sx={{
-                    width: "24%",
+                    width: "10%",
                     fontSize: "1.6rem",
-                    bgcolor: "background.default",
+                    backgroundImage:
+                      "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
                     p: "0.5rem",
                     borderRadius: "0.5rem",
                     color: "text.primary",
@@ -144,13 +150,14 @@ function Card(props: Props) {
                     textAlign: "center",
                   }}
                 >
-                  {"Con: " + data.stats.con}
-                </Typography>
-                <Typography
+                  <Typography> {"Con: " + data.stats.con} </Typography>
+                </Paper>
+                <Paper
                   sx={{
-                    width: "24%",
+                    width: "10%",
                     fontSize: "1.6rem",
-                    bgcolor: "background.default",
+                    backgroundImage:
+                      "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
                     p: "0.5rem",
                     borderRadius: "0.5rem",
                     color: "text.primary",
@@ -159,13 +166,14 @@ function Card(props: Props) {
                     textAlign: "center",
                   }}
                 >
-                  {"Wis: " + data.stats.wis}
-                </Typography>
-                <Typography
+                  <Typography> {"Wis: " + data.stats.wis} </Typography>
+                </Paper>
+                <Paper
                   sx={{
-                    width: "24%",
+                    width: "10%",
                     fontSize: "1.6rem",
-                    bgcolor: "background.default",
+                    backgroundImage:
+                      "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
                     p: "0.5rem",
                     borderRadius: "0.5rem",
                     color: "text.primary",
@@ -174,13 +182,14 @@ function Card(props: Props) {
                     textAlign: "center",
                   }}
                 >
-                  {"Int: " + data.stats.int}
-                </Typography>
-                <Typography
+                  <Typography> {"Int: " + data.stats.int} </Typography>
+                </Paper>
+                <Paper
                   sx={{
-                    width: "24%",
+                    width: "10%",
                     fontSize: "1.6rem",
-                    bgcolor: "background.default",
+                    backgroundImage:
+                      "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
                     p: "0.5rem",
                     borderRadius: "0.5rem",
                     color: "text.primary",
@@ -189,13 +198,14 @@ function Card(props: Props) {
                     textAlign: "center",
                   }}
                 >
-                  {"Cha: " + data.stats.cha}
-                </Typography>
-                <Typography
+                  <Typography> {"Cha: " + data.stats.cha}</Typography>
+                </Paper>
+                <Paper
                   sx={{
                     width: "100%",
                     fontSize: "1.6rem",
-                    bgcolor: "background.default",
+                    backgroundImage:
+                      "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
                     p: "0.5rem",
                     borderRadius: "0.5rem",
                     color: "text.primary",
@@ -204,8 +214,8 @@ function Card(props: Props) {
                     textAlign: "center",
                   }}
                 >
-                  {"Armor Class: " + data.stats.ac}
-                </Typography>
+                  <Typography>{"Armor Class: " + data.stats.ac}</Typography>
+                </Paper>
               </Box>
             </Box>
             <Box
@@ -248,7 +258,7 @@ function Card(props: Props) {
                           <RelationsCard
                             name={friend.name}
                             degree={friend.degree}
-                            img="https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
+                            img="none" //"https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
                             relationType="friend"
                           />
                         );
@@ -290,7 +300,7 @@ function Card(props: Props) {
                           <RelationsCard
                             name={enemy.name}
                             degree={enemy.degree}
-                            img="https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
+                            img="none" //"https://www.pngitem.com/pimgs/m/105-1055689_user-account-person-avatar-operating-system-grey-user.png"
                             relationType="enemy"
                           />
                         );
@@ -306,18 +316,26 @@ function Card(props: Props) {
             <Box
               sx={{
                 display: "flex",
-                alignItems: "flex-start",
-                justifyContent: "flex-end",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               <img
                 src={data.img}
                 alt={data.name}
-                style={{ width: "100%", borderRadius: "0.5rem" }}
+                style={{
+                  width: "200px",
+                  height: "200px",
+                  borderRadius: "0.5rem",
+                  zIndex: "1",
+                  objectFit: "cover",
+                  objectPosition: "0 0",
+                }}
+                /*       style={{ width: "100%", borderRadius: "0.5rem" }} */
               />
             </Box>
 
-            <Box sx={{ py: "1rem", overflowY:"auto"}}>
+            <Box sx={{ py: "1rem", overflowY: "auto" }}>
               <Typography
                 sx={{
                   color: "text.secondary",
@@ -333,7 +351,7 @@ function Card(props: Props) {
               </Typography>
             </Box>
 
-            <Box sx={{ py: "1rem", overflowY:"auto"}}>
+            <Box sx={{ py: "1rem", overflowY: "auto" }}>
               <Typography
                 sx={{
                   color: "text.secondary",
@@ -361,7 +379,7 @@ function Card(props: Props) {
                       sx={{
                         color: "text.primary",
                         fontSize: "1rem",
-                        p: "1rem",
+                        px: "1rem",
                       }}
                     >
                       {gear.dmg}
@@ -418,12 +436,20 @@ function Card(props: Props) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              objectFit: "cover",
             }}
           >
             <img
               src={data.img}
               alt={data.name}
-              style={{ width: "90%", borderRadius: "0.5rem", zIndex: "1" }}
+              style={{
+                width: "160px",
+                height: "160px",
+                borderRadius: "0.5rem",
+                zIndex: "1",
+                objectFit: "cover",
+                objectPosition: "0 0",
+              }}
             />
           </Box>
 

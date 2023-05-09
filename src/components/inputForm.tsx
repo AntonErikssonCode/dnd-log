@@ -431,7 +431,7 @@ function InputForm() {
             sx={{ width: "15%" }}
             margin="normal"
             type="number"
-            inputProps={{ min: 0, max: 18 }}
+            
           />
           <TextField
             id="str"
@@ -443,7 +443,6 @@ function InputForm() {
             sx={{ width: "15%" }}
             margin="normal"
             type="number"
-            inputProps={{ min: 0, max: 18 }}
           />
           <TextField
             id="con"
@@ -500,7 +499,6 @@ function InputForm() {
           sx={{ width: "15%" }}
           margin="normal"
           type="number"
-          inputProps={{ min: 0, max: 18 }}
         />
       </Box>
       <Button type="submit" variant="contained" sx={{ mt: 3 }}>

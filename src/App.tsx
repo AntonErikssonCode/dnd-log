@@ -26,6 +26,18 @@ function App() {
 
   
 
+  /* useEffect(() => {
+    firebaseDB.getNpcData().then((data) => {
+      let displayData: CharacterClass[] = [];
+      if (data?.length) {
+        data.forEach((data) => {
+          const newChar = new CharacterClass({ ...data });
+          displayData.push(newChar);
+        });
+      }
+      setNpcData(displayData);
+    });
+  }, [showSection]); */
   useEffect(() => {
     firebaseDB.getNpcData().then((data) => {
       let displayData: CharacterClass[] = [];
@@ -35,6 +47,17 @@ function App() {
           displayData.push(newChar);
         });
       }
+      displayData = displayData.sort((a, b) => {
+        if (a.date && b.date) {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        } else if (a.date) {
+          return -1;
+        } else if (b.date) {
+          return 1;
+        }
+        return 0;
+      });
+      displayData = displayData.reverse();
       setNpcData(displayData);
     });
   }, [showSection]);
