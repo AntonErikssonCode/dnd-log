@@ -37,7 +37,7 @@ class FirebaseDB {
       const npcData = snapshot.val();
       for (const npcKey in npcData) {
         const npc = npcData[npcKey];
-        console.dir(npc)
+       /*  console.dir(npc) */
         data.push(npc);
       }
       return data;

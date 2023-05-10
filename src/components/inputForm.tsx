@@ -137,6 +137,7 @@ function InputForm() {
 
   return (
     <Container component="form" onSubmit={handleSubmit} sx={{ width: "80%", pt:2, pb:10}}>
+        <Typography variant="h3" sx={{color:"text.secondary"}}>Enter a new NPC</Typography>
       <Box>
         <TextField
           id="name"

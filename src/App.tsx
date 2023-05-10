@@ -18,26 +18,12 @@ import { ref, set, push, onValue } from "firebase/database";
 import firebaseDB from "./db/firebase";
 import InputForm from "./components/inputForm";
 import theme from "./theme/theme";
-
+import PlayerPage from "./components/playerPage";
 function App() {
   const [selectedItem, setSelectedItem] = useState<CharacterClass | null>(null);
-  const [showSection, setShowSection] = useState(4);
+  const [showSection, setShowSection] = useState(0);
   const [npcData, setNpcData] = useState<any[] | undefined>(undefined);
 
-  
-
-  /* useEffect(() => {
-    firebaseDB.getNpcData().then((data) => {
-      let displayData: CharacterClass[] = [];
-      if (data?.length) {
-        data.forEach((data) => {
-          const newChar = new CharacterClass({ ...data });
-          displayData.push(newChar);
-        });
-      }
-      setNpcData(displayData);
-    });
-  }, [showSection]); */
   useEffect(() => {
     firebaseDB.getNpcData().then((data) => {
       let displayData: CharacterClass[] = [];
@@ -61,8 +47,7 @@ function App() {
       setNpcData(displayData);
     });
   }, [showSection]);
-   
-      
+
   function handleItemClick(item: CharacterClass) {
     setSelectedItem(item);
   }
@@ -73,7 +58,7 @@ function App() {
 
   const players = () => (
     <>
-      <Typography sx={{ color: "text.primary" }}>Player</Typography>
+      <PlayerPage />
     </>
   );
 
@@ -81,7 +66,12 @@ function App() {
     <>
       {npcData && npcData.length > 0 ? (
         npcData.map((character, index) => (
-          <Card data={character} index={index + 1} key={index} npcData={npcData} />
+          <Card
+            data={character}
+            index={index + 1}
+            key={index}
+            npcData={npcData}
+          />
         ))
       ) : (
         <p>No NPCs to display</p>
@@ -120,7 +110,6 @@ function App() {
           display: "flex",
           m: 0,
           p: 0,
-       
         }}
       >
         <Box
@@ -216,7 +205,13 @@ function App() {
               }}
               onClick={() => handleMenuSelection(4)}
             >
-              <Typography sx={{ alignSelf: "center", fontSize: "4rem", color:"secondary.main"}}>
+              <Typography
+                sx={{
+                  alignSelf: "center",
+                  fontSize: "4rem",
+                  color: "secondary.main",
+                }}
+              >
                 +
               </Typography>
             </Button>
@@ -227,44 +222,36 @@ function App() {
           sx={{
             m: 0,
 
-           
             height: "auto",
-            overflowY:"scroll",
+            overflowY: "scroll",
             width: "84%",
             position: "fixed",
             left: "16%",
-            top:0,
-            bottom:0,
-            right:0,
+            top: 0,
+            bottom: 0,
+            right: 0,
             display: "flex",
             justifyContent: "center",
-/*             bgcolor: "red",
- */          
-           
+            /*             bgcolor: "red",
+             */
           }}
         >
           <Box
             sx={{
-              
-
-          
-/*               bgcolor: "grey",
- */              borderRadius: "0.2rem",
+              /*               bgcolor: "grey",
+               */ borderRadius: "0.2rem",
               position: "relative",
               display: "flex",
-              
+
               flexWrap: "wrap",
               justifyContent: "center",
               alignItems: "center",
-              
-             height:"100%",
+
+              height: "100%",
               gap: 3,
-              py:3,
+              py: 3,
               maxHeight: "100vh", // set max-height to viewport height minus 80px for header
-             /*  overflowY: "auto", */ // enable scrolling when content exceeds max-height
-            
-          
-             
+              /*  overflowY: "auto", */ // enable scrolling when content exceeds max-height
             }}
           >
             <ActiveLayout />

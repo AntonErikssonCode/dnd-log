@@ -114,8 +114,9 @@ function Card(props: Props) {
                     borderRadius: "0.5rem",
                     color: "text.primary",
                     alignSelf: "center",
-                    whiteSpace: "nowrap",
+                    whiteSpace: "wrap",
                     textAlign: "center",
+                    minWidth:"60px"
                   }}
                 >
                   {" "}
@@ -133,6 +134,7 @@ function Card(props: Props) {
                     alignSelf: "center",
                     whiteSpace: "nowrap",
                     textAlign: "center",
+                    minWidth:"60px"
                   }}
                 >
                   <Typography> {"Str: " + data.stats.str} </Typography>
@@ -149,6 +151,7 @@ function Card(props: Props) {
                     alignSelf: "center",
                     whiteSpace: "nowrap",
                     textAlign: "center",
+                    minWidth:"60px"
                   }}
                 >
                   <Typography> {"Con: " + data.stats.con} </Typography>
@@ -165,6 +168,7 @@ function Card(props: Props) {
                     alignSelf: "center",
                     whiteSpace: "nowrap",
                     textAlign: "center",
+                    minWidth:"60px"
                   }}
                 >
                   <Typography> {"Wis: " + data.stats.wis} </Typography>
@@ -181,6 +185,7 @@ function Card(props: Props) {
                     alignSelf: "center",
                     whiteSpace: "nowrap",
                     textAlign: "center",
+                    minWidth:"60px"
                   }}
                 >
                   <Typography> {"Int: " + data.stats.int} </Typography>
@@ -197,6 +202,7 @@ function Card(props: Props) {
                     alignSelf: "center",
                     whiteSpace: "nowrap",
                     textAlign: "center",
+                    minWidth:"60px"
                   }}
                 >
                   <Typography> {"Cha: " + data.stats.cha}</Typography>
@@ -213,6 +219,7 @@ function Card(props: Props) {
                     alignSelf: "center",
                     whiteSpace: "nowrap",
                     textAlign: "center",
+                   
                   }}
                 >
                   <Typography>{"Armor Class: " + data.stats.ac}</Typography>
