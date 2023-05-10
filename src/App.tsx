@@ -228,7 +228,7 @@ function App() {
             m: 0,
 
            
-            height: "100vh",
+            height: "auto",
             overflowY:"scroll",
             width: "84%",
             position: "fixed",
@@ -238,8 +238,8 @@ function App() {
             right:0,
             display: "flex",
             justifyContent: "center",
-            bgcolor: "red",
-          
+/*             bgcolor: "red",
+ */          
            
           }}
         >
@@ -248,8 +248,8 @@ function App() {
               
 
           
-              bgcolor: "grey",
-              borderRadius: "0.2rem",
+/*               bgcolor: "grey",
+ */              borderRadius: "0.2rem",
               position: "relative",
               display: "flex",
               
@@ -257,11 +257,11 @@ function App() {
               justifyContent: "center",
               alignItems: "center",
               
-             
+             height:"100%",
               gap: 3,
-              py:10,
+              py:3,
               maxHeight: "100vh", // set max-height to viewport height minus 80px for header
-              overflowY: "auto", // enable scrolling when content exceeds max-height
+             /*  overflowY: "auto", */ // enable scrolling when content exceeds max-height
             
           
              

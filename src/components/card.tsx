@@ -52,8 +52,9 @@ function Card(props: Props) {
         width: isExpanded ? "90%" : "180px",
         minWidth: isExpanded ? "70vw" : "180px",
         transition: "transform 0.2s ease-in-out",
+
         "&:hover": {
-          transform: "scale(1.05)",
+          transform: isExpanded ? "scale(1.000)" : "scale(1.05)" ,
         },
       }}
       onClick={handleCardClick}
@@ -80,9 +81,9 @@ function Card(props: Props) {
               sx={{
                 display: "flex",
                 width: "95%",
-                height: "40%",
+                height: "auto",
                 flexDirection: "column",
-                justifyContent: "space-between",
+                justifyContent: "flex-start",
               }}
             >
               <Typography variant="h2" sx={{ color: "text.primary" }}>
