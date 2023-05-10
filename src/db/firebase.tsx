@@ -4,11 +4,13 @@ import { DataSnapshot } from '@firebase/database';
 
 import { CharacterClass } from '../classes/Character';
 import firebaseConfig from './firebase.config';
-
+import { PlayerInterface } from '../components/player/playerCard';
 class FirebaseDB {
   public db: any;
   public npc: any;
   public npcRef: any;
+  public player: any;
+  public playerRef: any;
 
   constructor() {
     const app = initializeApp(firebaseConfig);
@@ -16,6 +18,8 @@ class FirebaseDB {
     
     this.npc = "npc/";
     this.npcRef = ref(this.db, this.npc);
+    this.player = "player/";
+    this.playerRef = ref(this.db, this.player);
   }
 
   public setNpc(npcId: string, npcData: CharacterClass) {
@@ -26,6 +30,17 @@ class FirebaseDB {
       })
       .catch((error) => {
         console.error(`Failed to save NPC ${npcId}:`, error);
+      });
+  }
+
+  public setPlayer(playerId: string, playerData:PlayerInterface) {
+    const specificRef = ref(this.db, this.player + playerId);
+    set(specificRef, playerData)
+      .then(() => {
+        console.log(`NPC ${playerId} saved successfully.`);
+      })
+      .catch((error) => {
+        console.error(`Failed to save NPC ${playerId}:`, error);
       });
   }
 

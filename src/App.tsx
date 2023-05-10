@@ -48,6 +48,11 @@ function App() {
     });
   }, [showSection]);
 
+  useEffect(() => {
+
+  }, []);
+
+
   function handleItemClick(item: CharacterClass) {
     setSelectedItem(item);
   }
@@ -114,7 +119,8 @@ function App() {
       >
         <Box
           sx={{
-            width: "16%",
+            width: "10%",
+            minWidth:"120px",
             position: "fixed",
             top: 0,
             bottom: 0,
@@ -224,9 +230,9 @@ function App() {
 
             height: "auto",
             overflowY: "scroll",
-            width: "84%",
+            width: "90%",
             position: "fixed",
-            left: "16%",
+            left: "10%",
             top: 0,
             bottom: 0,
             right: 0,
@@ -245,8 +251,8 @@ function App() {
 
               flexWrap: "wrap",
               justifyContent: "center",
-              alignItems: "center",
-
+              alignItems: "flexStart",
+              width: "90%",
               height: "100%",
               gap: 3,
               py: 3,
