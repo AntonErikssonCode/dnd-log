@@ -24,7 +24,7 @@ export interface PlayerInterface {
   
 }
 function PlayerCard() {
-  const testName = "TestName";
+  const testName = "Test Name";
   const [playerData, setPlayerData] = useState<PlayerInterface>({
     characterName: "",
     class: "",
