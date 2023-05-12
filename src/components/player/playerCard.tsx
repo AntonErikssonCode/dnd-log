@@ -21,10 +21,14 @@ export interface PlayerInterface {
   race: string;
   alignment: string;
   exp: string;
-  
 }
 function PlayerCard() {
   const testName = "Test Name";
+  const [activePLayer, setActivePLayer] = useState<PlayerInterface | undefined>(
+    undefined
+  );
+
+  const [isUserDataEntered, setIsUserDataEntered] = useState(false);
   const [playerData, setPlayerData] = useState<PlayerInterface>({
     characterName: "",
     class: "",
@@ -40,20 +44,52 @@ function PlayerCard() {
     const { name, value } = event.target;
     setPlayerData((prevState) => ({ ...prevState, [name]: value }));
     console.dir(playerData);
-    updloadPlayerData()
-    
+    uploadPlayerData();
+    setIsUserDataEntered(true);
   };
-  useEffect(()=>{
-    updloadPlayerData();
+  useEffect(() => {
+    if (isUserDataEntered) {
+      uploadPlayerData();
+      setIsUserDataEntered(false);
+    }
+  }, [isUserDataEntered]);
 
-  }, [playerData])
-
-  function updloadPlayerData(){
+  function uploadPlayerData() {
     firebaseDB.setPlayer(testName, playerData);
   }
 
 
- 
+  // Feches Player
+  useEffect(() => {
+    async function getPlayer() {
+      firebaseDB.getPlayerData().then((data) => {
+        if (data?.length) {
+          setActivePLayer(data[0]);
+        }
+      });
+    }
+    getPlayer();
+  }, []);
+
+  if (activePLayer === undefined) {
+    return <Box>
+    <Typography variant="h4" sx={{ color: "text.primary" }}>
+      Character Name
+    </Typography>
+    <Paper
+        component="form"
+        sx={{
+          width: "60vw",
+          bgcolor: "secondary.main",
+          color: "text.primary",
+          p: 2,
+          borderRadius: "0.5rem",
+        }}
+      >
+        </Paper>
+   
+  </Box>
+  }
   return (
     <Box>
       <Typography variant="h4" sx={{ color: "text.primary" }}>
@@ -76,7 +112,7 @@ function PlayerCard() {
           }}
         >
           <Typography variant="h5" sx={{ color: "text.primary", width: "40%" }}>
-            Character Name
+          Character Name
           </Typography>
           <Box
             sx={{
@@ -100,6 +136,7 @@ function PlayerCard() {
                 variableName="class"
                 onInputChange={handleInputChange}
                 player={playerData}
+                activePlayer={activePLayer}
               />
               <TextAndSubText
                 text="Rouge"
@@ -107,6 +144,7 @@ function PlayerCard() {
                 variableName="background"
                 onInputChange={handleInputChange}
                 player={playerData}
+                activePlayer={activePLayer}
               />
               <TextAndSubText
                 text="Rouge"
@@ -114,6 +152,7 @@ function PlayerCard() {
                 variableName="playerName"
                 onInputChange={handleInputChange}
                 player={playerData}
+                activePlayer={activePLayer}
               />
             </Box>
             <Box
@@ -130,6 +169,7 @@ function PlayerCard() {
                 variableName="race"
                 onInputChange={handleInputChange}
                 player={playerData}
+                activePlayer={activePLayer}
               />
 
               <TextAndSubText
@@ -138,6 +178,7 @@ function PlayerCard() {
                 variableName="alignment"
                 onInputChange={handleInputChange}
                 player={playerData}
+                activePlayer={activePLayer}
               />
 
               <TextAndSubText
@@ -146,6 +187,7 @@ function PlayerCard() {
                 variableName="exp"
                 onInputChange={handleInputChange}
                 player={playerData}
+                activePlayer={activePLayer}
               />
             </Box>
           </Box>

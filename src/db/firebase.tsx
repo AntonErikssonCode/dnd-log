@@ -62,6 +62,28 @@ class FirebaseDB {
       console.error('Failed to get NPC data:', error);
     }
   }
+  public async getPlayerData() {
+    const data: any[] = [];
+    try {
+      const snapshot = await get(this.playerRef);
+      const playerData = snapshot.val();
+      for (const playerKey in playerData) {
+        const player = playerData[playerKey];
+     
+        data.push(player);
+     /*    console.log("Player Data:");
+        console.table(playerData); */
+      }
+
+      
+
+      return data;
+
+    } catch (error) {
+      console.error('Failed to get player data:', error);
+    }
+  }
+
   
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Typography,
@@ -10,7 +10,9 @@ import {
 
 import SpellPage from './spellPage';
 import PlayerCard from './player/playerCard';
+import firebaseDB from '../db/firebase';
 function PlayerPage() {
+  
 
   const spellArray = ["acid-arrow", "fireball"]
   return (

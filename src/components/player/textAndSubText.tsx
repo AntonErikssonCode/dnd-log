@@ -26,11 +26,12 @@ interface Props {
     exp: string;
   };
   onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  activePlayer: PlayerInterface;
 }
 
 
 function TextAndSubText(props: Props) {
-  const { player, onInputChange } = props;
+  const { player, onInputChange, activePlayer } = props;
 /*   const name = props.variableName.toLowerCase();
  */ 
   return (
@@ -44,7 +45,7 @@ function TextAndSubText(props: Props) {
         sx={{
           fontSize: "1.4rem",
         }}
-        placeholder={props.text}
+        placeholder={activePlayer[props.variableName] as string}
         name={props.variableName}
         value={player[props.variableName] as string}
         onChange={onInputChange}
