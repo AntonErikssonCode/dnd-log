@@ -24,6 +24,14 @@ interface Props {
     race: string;
     alignment: string;
     exp: string;
+    str: string;
+    dex: string;
+    con: string;
+    int: string;
+    wis: string;
+    cha: string;
+    insp: string;
+    prof: string;
   };
   onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   activePlayer: PlayerInterface;

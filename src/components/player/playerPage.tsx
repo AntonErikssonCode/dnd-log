@@ -21,13 +21,18 @@ export interface PlayerInterface {
   race: string;
   alignment: string;
   exp: string;
+  str: string;
+  dex: string;
+  con: string;
+  int: string;
+  wis: string;
+  cha: string;
+  insp: string;
+  prof: string;
 }
 
-
-
-
 function PlayerPage() {
-  const testName = "TestName";
+  const testName = "Test Name";
   const [activePLayer, setActivePLayer] = useState<PlayerInterface | undefined>(
     undefined
   );
@@ -43,12 +48,20 @@ function PlayerPage() {
     race: "",
     alignment: "",
     exp: "",
+    str:  "",
+    dex:  "",
+    con:  "",
+    int:  "",
+    wis:  "",
+    cha:  "",
+    insp:  "",
+    prof:  "",
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setPlayerData((prevState) => ({ ...prevState, [name]: value }));
- 
+
     uploadPlayerData();
     setIsUserDataEntered(true);
   };
@@ -80,10 +93,13 @@ function PlayerPage() {
   if (activePLayer === undefined) {
     return (
       <Box>
-        <Typography variant="h3" sx={{ color: "text.secondary",p:0, paddingTop: "2rem" }}>
+        <Typography
+          variant="h3"
+          sx={{ color: "text.secondary", p: 0, paddingTop: "2rem" }}
+        >
           Player Characters
         </Typography>
-      
+
         <Box>
           <Typography variant="h4" sx={{ color: "text.primary" }}>
             Loading Character...
@@ -104,10 +120,18 @@ function PlayerPage() {
   }
   return (
     <Box>
-      <Typography variant="h3" sx={{ color: "text.secondary",p:0, paddingTop: "2rem", paddingBottom: "0.5rem"}}>
+      <Typography
+        variant="h3"
+        sx={{
+          color: "text.secondary",
+          p: 0,
+          paddingTop: "2rem",
+          paddingBottom: "0.5rem",
+        }}
+      >
         Player Characters
       </Typography>
-      <PlayerSelector data={allPlayers}/>
+      <PlayerSelector data={allPlayers} />
       <Box>
         <Typography variant="h4" sx={{ color: "text.primary" }}>
           {playerData.characterName}
@@ -129,7 +153,7 @@ function PlayerPage() {
               display: "flex",
               alignItems: "center",
               gap: 2,
-              height: "12%",
+              height: "5%",
             }}
           >
             <Box sx={{ width: "40%" }}>
@@ -220,6 +244,94 @@ function PlayerPage() {
                 />
               </Box>
             </Box>
+          </Box>
+          <Box   sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 2,
+              width: "33%",
+            }}>
+          {/* Stats Bar */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+              width: "33%",
+            }}
+          >
+            <TextAndSubText
+              text=" "
+              subText="Strength"
+              variableName="str"
+              onInputChange={handleInputChange}
+              player={playerData}
+              activePlayer={activePLayer}
+            />
+            <TextAndSubText
+              text=" "
+              subText="Dexterity"
+              variableName="dex"
+              onInputChange={handleInputChange}
+              player={playerData}
+              activePlayer={activePLayer}
+            />
+
+            <TextAndSubText
+              text=" "
+              subText="Constitution"
+              variableName="con"
+              onInputChange={handleInputChange}
+              player={playerData}
+              activePlayer={activePLayer}
+            />
+            <TextAndSubText
+              text=" "
+              subText="Intelligence"
+              variableName="int"
+              onInputChange={handleInputChange}
+              player={playerData}
+              activePlayer={activePLayer}
+            />
+
+            <TextAndSubText
+              text=" "
+              subText="Wisdom"
+              variableName="wis"
+              onInputChange={handleInputChange}
+              player={playerData}
+              activePlayer={activePLayer}
+            />
+            <TextAndSubText
+              text=" "
+              subText="Charisma"
+              variableName="cha"
+              onInputChange={handleInputChange}
+              player={playerData}
+              activePlayer={activePLayer}
+            />
+          </Box>
+          <Box>
+          <TextAndSubText
+              text=" "
+              subText="Inspiration"
+              variableName="insp"
+              onInputChange={handleInputChange}
+              player={playerData}
+              activePlayer={activePLayer}
+            />
+                 <TextAndSubText
+              text=" "
+              subText="Profiency Bonus"
+              variableName="prof"
+              onInputChange={handleInputChange}
+              player={playerData}
+              activePlayer={activePLayer}
+            />
+
+            
+          </Box>
+
           </Box>
         </Paper>
       </Box>
