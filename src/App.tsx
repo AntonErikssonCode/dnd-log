@@ -18,7 +18,7 @@ import { ref, set, push, onValue } from "firebase/database";
 import firebaseDB from "./db/firebase";
 import InputForm from "./components/inputForm";
 import theme from "./theme/theme";
-import PlayerPage from "./components/playerPage";
+import PlayerPage from "./components/player/playerPage";
 function App() {
   const [selectedItem, setSelectedItem] = useState<CharacterClass | null>(null);
   const [showSection, setShowSection] = useState(0);

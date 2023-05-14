@@ -9,7 +9,7 @@ import {
   Paper,
   Input,
 } from "@mui/material";
-import { PlayerInterface } from "./playerCard";
+import { PlayerInterface } from "./playerPage";
 
 interface Props {
   text: string;

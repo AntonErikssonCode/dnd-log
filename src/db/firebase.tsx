@@ -4,7 +4,7 @@ import { DataSnapshot } from '@firebase/database';
 
 import { CharacterClass } from '../classes/Character';
 import firebaseConfig from './firebase.config';
-import { PlayerInterface } from '../components/player/playerCard';
+import { PlayerInterface } from '../components/player/playerPage';
 class FirebaseDB {
   public db: any;
   public npc: any;
