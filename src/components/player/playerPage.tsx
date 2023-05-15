@@ -36,6 +36,7 @@ function PlayerPage() {
   const [activePLayer, setActivePLayer] = useState<PlayerInterface | undefined>(
     undefined
   );
+  const [activeIndex, setActiveIndex] = useState(0);
   const [allPlayers, setAllPlayers] = useState<PlayerInterface[]>([]);
 
   const [isUserDataEntered, setIsUserDataEntered] = useState(false);
@@ -81,14 +82,14 @@ function PlayerPage() {
     async function getPlayer() {
       firebaseDB.getPlayerData().then((data) => {
         if (data?.length) {
-          setActivePLayer(data[0]);
-          setPlayerData(data[0]);
+          setActivePLayer(data[activeIndex]);
+          setPlayerData(data[activeIndex]);
           setAllPlayers(data);
         }
       });
     }
     getPlayer();
-  }, []);
+  }, [activeIndex]);
 
   if (activePLayer === undefined) {
     return (
