@@ -49,14 +49,14 @@ function PlayerPage() {
     race: "",
     alignment: "",
     exp: "",
-    str:  "",
-    dex:  "",
-    con:  "",
-    int:  "",
-    wis:  "",
-    cha:  "",
-    insp:  "",
-    prof:  "",
+    str: "",
+    dex: "",
+    con: "",
+    int: "",
+    wis: "",
+    cha: "",
+    insp: "",
+    prof: "",
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -246,93 +246,125 @@ function PlayerPage() {
               </Box>
             </Box>
           </Box>
-          <Box   sx={{
+          <Box
+            sx={{
               display: "flex",
               flexDirection: "row",
               gap: 2,
               width: "33%",
-            }}>
-          {/* Stats Bar */}
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-              width: "33%",
+              height: "50%"
             }}
           >
-            <TextAndSubText
-              text=" "
-              subText="Strength"
-              variableName="str"
-              onInputChange={handleInputChange}
-              player={playerData}
-              activePlayer={activePLayer}
-            />
-            <TextAndSubText
-              text=" "
-              subText="Dexterity"
-              variableName="dex"
-              onInputChange={handleInputChange}
-              player={playerData}
-              activePlayer={activePLayer}
-            />
+            {/* Stats Bar */}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
+                width: "33%",
+               
+              }}
+            >
+              <TextAndSubText
+                text=" "
+                subText="Strength"
+                variableName="str"
+                onInputChange={handleInputChange}
+                player={playerData}
+                activePlayer={activePLayer}
+              />
+              <TextAndSubText
+                text=" "
+                subText="Dexterity"
+                variableName="dex"
+                onInputChange={handleInputChange}
+                player={playerData}
+                activePlayer={activePLayer}
+              />
 
-            <TextAndSubText
-              text=" "
-              subText="Constitution"
-              variableName="con"
-              onInputChange={handleInputChange}
-              player={playerData}
-              activePlayer={activePLayer}
-            />
-            <TextAndSubText
-              text=" "
-              subText="Intelligence"
-              variableName="int"
-              onInputChange={handleInputChange}
-              player={playerData}
-              activePlayer={activePLayer}
-            />
+              <TextAndSubText
+                text=" "
+                subText="Constitution"
+                variableName="con"
+                onInputChange={handleInputChange}
+                player={playerData}
+                activePlayer={activePLayer}
+              />
+              <TextAndSubText
+                text=" "
+                subText="Intelligence"
+                variableName="int"
+                onInputChange={handleInputChange}
+                player={playerData}
+                activePlayer={activePLayer}
+              />
 
-            <TextAndSubText
-              text=" "
-              subText="Wisdom"
-              variableName="wis"
-              onInputChange={handleInputChange}
-              player={playerData}
-              activePlayer={activePLayer}
-            />
-            <TextAndSubText
-              text=" "
-              subText="Charisma"
-              variableName="cha"
-              onInputChange={handleInputChange}
-              player={playerData}
-              activePlayer={activePLayer}
-            />
-          </Box>
-          <Box>
-          <TextAndSubText
-              text=" "
-              subText="Inspiration"
-              variableName="insp"
-              onInputChange={handleInputChange}
-              player={playerData}
-              activePlayer={activePLayer}
-            />
-                 <TextAndSubText
-              text=" "
-              subText="Profiency Bonus"
-              variableName="prof"
-              onInputChange={handleInputChange}
-              player={playerData}
-              activePlayer={activePLayer}
-            />
+              <TextAndSubText
+                text=" "
+                subText="Wisdom"
+                variableName="wis"
+                onInputChange={handleInputChange}
+                player={playerData}
+                activePlayer={activePLayer}
+              />
+              <TextAndSubText
+                text=" "
+                subText="Charisma"
+                variableName="cha"
+                onInputChange={handleInputChange}
+                player={playerData}
+                activePlayer={activePLayer}
+              />
+            </Box>
+            <Box>
+              <Box sx={{ height: "10%" }}>
+                <TextAndSubText
+                  text=" "
+                  subText="Inspiration"
+                  variableName="insp"
+                  onInputChange={handleInputChange}
+                  player={playerData}
+                  activePlayer={activePLayer}
+                />
+              </Box>
+              <Box sx={{ height: "10%" }}>
+                <TextAndSubText
+                  text=" "
+                  subText="Profiency Bonus"
+                  variableName="prof"
+                  onInputChange={handleInputChange}
+                  player={playerData}
+                  activePlayer={activePLayer}
+                />
+              </Box>
+              <Box sx={{ height: "30%", display:"flex", flexDirection:"column",  }}>
+                <Typography>DC</Typography>
+                <Typography>DC</Typography>
+                <Typography>DC</Typography>
+                <Typography>DC</Typography>
+                <Typography>DC</Typography>
+                <Typography>DC</Typography>
+         
+              </Box>
+              <Box sx={{ height: "50%", display:"flex", flexDirection:"column", }}>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
+              <Typography>PROF</Typography>
 
-            
-          </Box>
-
+               
+  
+              </Box>
+            </Box>
           </Box>
         </Paper>
       </Box>
