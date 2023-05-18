@@ -317,6 +317,7 @@ function PlayerPage() {
               />
             </Box>
             <Box>
+                {/* Second Column */}
               <Box sx={{ height: "10%" }}>
                 <TextAndSubText
                   text=" "
@@ -337,6 +338,7 @@ function PlayerPage() {
                   activePlayer={activePLayer}
                 />
               </Box>
+                {/* Savings Throws */}
               <Box sx={{ height: "30%", display:"flex", flexDirection:"column",  }}>
                 <Typography>DC</Typography>
                 <Typography>DC</Typography>
@@ -346,6 +348,7 @@ function PlayerPage() {
                 <Typography>DC</Typography>
          
               </Box>
+               {/* Profs */}
               <Box sx={{ height: "50%", display:"flex", flexDirection:"column", }}>
               <Typography>PROF</Typography>
               <Typography>PROF</Typography>
